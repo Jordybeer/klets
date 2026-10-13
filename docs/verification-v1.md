@@ -42,4 +42,4 @@ Fraunces en Nunito Sans worden uit de vastgepinde Fontsource-packages gebundeld,
 
 ## Release
 
-`npm run build` levert statische bestanden in `dist/`. GitHub CI is toegevoegd voor installatie, typecheck, tests en build. De bestaande PR #1 blijft de reviewplek. Er wordt geen merge, gekozen hosting of deployment geclaimd. CI-resultaat volgt de gepubliceerde commit en wordt apart gecontroleerd.
+`npm run build` levert statische bestanden in `dist/`. GitHub CI is toegevoegd voor installatie, typecheck, tests en build. De bestaande PR #1 blijft de reviewplek. Er wordt geen merge, gekozen hosting of deployment geclaimd. GitHub Actions-run [38478354325](https://github.com/Jordybeer/klets/actions/runs/38478354325) voor implementatiecommit `7299deb92c705aad63faae830c0b462fb6883fa4` eindigde met `success`; de job `verify` is geslaagd. PR #1 staat klaar voor review.
