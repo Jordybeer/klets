@@ -1,0 +1,22 @@
+:root {
+  color-scheme: light;
+  --color-background: #fff1e8;
+  --color-surface: #fffaf6;
+  --color-ink: #44283f;
+  --color-muted: #765866;
+  --color-peach: #f4b7a7;
+  --color-lavender: #b8a2e8;
+  --color-lavender-soft: #e9def5;
+  --color-lavender-strong: #6e4b9d;
+  --color-line: #d9c9ce;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --font-body: 'Nunito Sans', ui-sans-serif, sans-serif;
+  --font-display: 'Fraunces', Georgia, serif;
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+}

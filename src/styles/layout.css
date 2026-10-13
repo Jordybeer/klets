@@ -1,0 +1,46 @@
+.app-shell { width: min(100%, 1120px); min-height: 100svh; height: 100dvh; margin-inline: auto; padding: 24px 48px 16px; display: grid; grid-template-rows: 52px minmax(min-content, 1fr) 44px; }
+.app-header { display: flex; align-items: center; gap: 20px; }
+.wordmark { font: 600 45px/.9 var(--font-display); letter-spacing: -.04em; text-decoration: none; padding-bottom: 8px; }
+.wordmark span { color: var(--color-lavender-strong); }
+.brand-note { color: var(--color-muted); font-size: 13px; }
+.settings-button { margin-left: auto; }
+.generator { width: min(100%, 520px); justify-self: center; align-self: center; display: grid; grid-template-rows: 52px 96px minmax(164px, 300px) minmax(128px, auto) 88px; position: relative; }
+.context-line { text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.next-context { color: var(--color-muted); font-size: 11px; line-height: 14px; margin-top: -2px; }
+.context-button { min-height: 44px; display: flex; align-items: center; gap: 16px; background: transparent; padding: 0 10px; font-weight: 700; font-size: 13px; }
+.context-dot { padding: 0 8px; }
+.context-edit { display: flex; align-items: center; gap: 2px; color: var(--color-muted); font-size: 12px; font-weight: 600; }
+.context-edit .icon { width: 13px; height: 13px; }
+.expanded-intents { width: min(100%, 392px); justify-self: center; }
+.compact-intent { display: none; }
+.stage-slot { min-height: 0; width: min(100%, 440px); justify-self: center; position: relative; }
+.result { text-align: center; align-self: stretch; padding: 2px 12px 8px; display: flex; flex-direction: column; justify-content: center; }
+.result-context { font-size: 11px; line-height: 1.5; font-weight: 700; color: var(--color-muted); margin-bottom: 12px; }
+.result-context span { padding-inline: 3px; }
+.result-text { font: 500 clamp(24px, 2.6vw, 31px)/1.2 var(--font-display); letter-spacing: -.025em; text-wrap: pretty; max-width: 27ch; margin-inline: auto; }
+.result.is-empty .result-text { font-size: 35px; line-height: 1.1; }
+.result-controls { display: flex; flex-direction: column; align-items: center; justify-content: start; }
+.result-actions { display: flex; gap: 10px; }
+.moment-button { font-size: 12px; }
+.moment-button .icon { width: 13px; height: 13px; }
+.first-hint { text-align: center; font-size: 14px; line-height: 1.6; font-weight: 700; padding-top: 12px; }
+.first-hint span { color: var(--color-muted); font-weight: 400; font-size: 12px; }
+.app-footer { display: flex; align-items: center; justify-content: center; gap: 12px; width: min(100%, 680px); justify-self: center; position: relative; }
+.footer-status { font-size: 12px; line-height: 1.4; color: var(--color-muted); max-width: 300px; }
+.footer-status:empty { display: none; }
+.footer-status .text-button { min-height: 24px; padding: 0 4px; font-size: inherit; text-decoration: underline; }
+.saved-access { white-space: nowrap; font-size: 12px; color: var(--color-muted); }
+.saved-access .icon { width: 15px; height: 15px; }
+.favorite-count { font-size: 11px; line-height: 20px; min-width: 20px; border-radius: 50%; background: var(--color-lavender-soft); text-align: center; }
+.support-view { width: min(100%, 540px); justify-self: center; align-self: start; padding-block: 16px 24px; }
+.support-view h1 { font: 500 38px/1.15 var(--font-display); letter-spacing: -.03em; margin-top: 12px; }
+.support-intro { font-size: 15px; line-height: 1.5; color: var(--color-muted); margin-top: 12px; }
+.support-body { margin-top: 28px; }
+.is-supporting { height: auto; min-height: 100dvh; }
+.is-supporting .app-footer { min-height: 44px; }
+@media (min-height: 950px) { .generator { grid-template-rows: 56px 96px 340px minmax(138px, auto) 88px; } }
+@media (max-width: 600px) { .app-shell { padding: 16px 20px 12px; grid-template-rows: 48px minmax(min-content, 1fr) 44px; } .brand-note { display: none; } .wordmark { font-size: 39px; } .generator { grid-template-rows: 48px 96px minmax(164px, 290px) minmax(128px, auto) 88px; } .result-text { font-size: 27px; } .result { padding-inline: 0; } .result.is-empty .result-text { font-size: 32px; } .support-view h1 { font-size: 34px; } .support-body { margin-top: 24px; } .footer-status { font-size: 11px; } .saved-access { font-size: 11px; } }
+@media (max-height: 780px) { .generator { grid-template-rows: 48px 96px minmax(164px, 220px) minmax(112px, auto) 88px; } .result-context { margin-bottom: 8px; } .result-text { font-size: 26px; } }
+@media (max-height: 700px) { .expanded-intents { display: none; } .compact-intent { display: flex; } .generator { grid-template-rows: 44px 44px minmax(164px, 210px) minmax(104px, auto) 88px; } .result.is-empty .result-text { font-size: 29px; } }
+@media (max-height: 620px) { .app-shell { padding: 8px 12px; grid-template-rows: 44px minmax(min-content, 1fr) 44px; } .wordmark { font-size: 32px; padding-bottom: 4px; } .settings-button { width: 44px; min-height: 44px; } .generator { grid-template-rows: 44px 44px 164px minmax(104px, auto) 88px; } .context-button { min-height: 44px; } .result-text { font-size: 24px; } .result-context { margin-bottom: 6px; font-size: 10px; } .first-hint { padding-top: 8px; } .support-view { padding-block: 8px 16px; } .support-view h1 { font-size: 30px; } .support-body { margin-top: 16px; } }
+@media (max-height: 540px), (max-width: 300px) { .app-shell { height: auto; min-height: 100dvh; } }
