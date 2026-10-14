@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.superpowers/
+.impeccable/review/
+.impeccable/mocks/
+.impeccable/config.local.json
+*.log

@@ -1,0 +1,438 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-13T00:00:00Z",
+  "title": "Design System: Klets",
+  "extensions": {
+    "colorMeta": {
+      "background": {
+        "role": "neutral",
+        "displayName": "Warme crème",
+        "tonalRamp": [
+          "oklch(15% 0.0194 55.15)",
+          "oklch(26% 0.0194 55.15)",
+          "oklch(38% 0.0194 55.15)",
+          "oklch(49% 0.0194 55.15)",
+          "oklch(60% 0.0194 55.15)",
+          "oklch(72% 0.0194 55.15)",
+          "oklch(83% 0.0194 55.15)",
+          "oklch(95% 0.0194 55.15)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Licht oppervlak",
+        "tonalRamp": [
+          "oklch(15% 0.0075 61.46)",
+          "oklch(26% 0.0075 61.46)",
+          "oklch(38% 0.0075 61.46)",
+          "oklch(49% 0.0075 61.46)",
+          "oklch(60% 0.0075 61.46)",
+          "oklch(72% 0.0075 61.46)",
+          "oklch(83% 0.0075 61.46)",
+          "oklch(95% 0.0075 61.46)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Pruim",
+        "tonalRamp": [
+          "oklch(15% 0.0553 333.47)",
+          "oklch(26% 0.0553 333.47)",
+          "oklch(38% 0.0553 333.47)",
+          "oklch(49% 0.0553 333.47)",
+          "oklch(60% 0.0553 333.47)",
+          "oklch(72% 0.0553 333.47)",
+          "oklch(83% 0.0553 333.47)",
+          "oklch(95% 0.0553 333.47)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Gedempte pruim",
+        "tonalRamp": [
+          "oklch(15% 0.0444 349.19)",
+          "oklch(26% 0.0444 349.19)",
+          "oklch(38% 0.0444 349.19)",
+          "oklch(49% 0.0444 349.19)",
+          "oklch(60% 0.0444 349.19)",
+          "oklch(72% 0.0444 349.19)",
+          "oklch(83% 0.0444 349.19)",
+          "oklch(95% 0.0444 349.19)"
+        ]
+      },
+      "peach": {
+        "role": "secondary",
+        "displayName": "Peach",
+        "tonalRamp": [
+          "oklch(15% 0.0748 35.20)",
+          "oklch(26% 0.0748 35.20)",
+          "oklch(38% 0.0748 35.20)",
+          "oklch(49% 0.0748 35.20)",
+          "oklch(60% 0.0748 35.20)",
+          "oklch(72% 0.0748 35.20)",
+          "oklch(83% 0.0748 35.20)",
+          "oklch(95% 0.0748 35.20)"
+        ]
+      },
+      "lavender": {
+        "role": "primary",
+        "displayName": "Lavendel",
+        "tonalRamp": [
+          "oklch(15% 0.1012 298.38)",
+          "oklch(26% 0.1012 298.38)",
+          "oklch(38% 0.1012 298.38)",
+          "oklch(49% 0.1012 298.38)",
+          "oklch(60% 0.1012 298.38)",
+          "oklch(72% 0.1012 298.38)",
+          "oklch(83% 0.1012 298.38)",
+          "oklch(95% 0.1012 298.38)"
+        ]
+      },
+      "lavender-soft": {
+        "role": "primary",
+        "displayName": "Zacht lavendel",
+        "tonalRamp": [
+          "oklch(15% 0.0330 307.16)",
+          "oklch(26% 0.0330 307.16)",
+          "oklch(38% 0.0330 307.16)",
+          "oklch(49% 0.0330 307.16)",
+          "oklch(60% 0.0330 307.16)",
+          "oklch(72% 0.0330 307.16)",
+          "oklch(83% 0.0330 307.16)",
+          "oklch(95% 0.0330 307.16)"
+        ]
+      },
+      "lavender-strong": {
+        "role": "primary",
+        "displayName": "Lavendel-sterk",
+        "tonalRamp": [
+          "oklch(15% 0.1301 301.47)",
+          "oklch(26% 0.1301 301.47)",
+          "oklch(38% 0.1301 301.47)",
+          "oklch(49% 0.1301 301.47)",
+          "oklch(60% 0.1301 301.47)",
+          "oklch(72% 0.1301 301.47)",
+          "oklch(83% 0.1301 301.47)",
+          "oklch(95% 0.1301 301.47)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Lijn",
+        "tonalRamp": [
+          "oklch(15% 0.0191 356.51)",
+          "oklch(26% 0.0191 356.51)",
+          "oklch(38% 0.0191 356.51)",
+          "oklch(49% 0.0191 356.51)",
+          "oklch(60% 0.0191 356.51)",
+          "oklch(72% 0.0191 356.51)",
+          "oklch(83% 0.0191 356.51)",
+          "oklch(95% 0.0191 356.51)"
+        ]
+      },
+      "primary-hover": {
+        "role": "neutral",
+        "displayName": "Primaire hover",
+        "tonalRamp": [
+          "oklch(15% 0.0603 332.23)",
+          "oklch(26% 0.0603 332.23)",
+          "oklch(38% 0.0603 332.23)",
+          "oklch(49% 0.0603 332.23)",
+          "oklch(60% 0.0603 332.23)",
+          "oklch(72% 0.0603 332.23)",
+          "oklch(83% 0.0603 332.23)",
+          "oklch(95% 0.0603 332.23)"
+        ]
+      },
+      "secondary-hover": {
+        "role": "primary",
+        "displayName": "Secundaire hover",
+        "tonalRamp": [
+          "oklch(15% 0.0472 309.16)",
+          "oklch(26% 0.0472 309.16)",
+          "oklch(38% 0.0472 309.16)",
+          "oklch(49% 0.0472 309.16)",
+          "oklch(60% 0.0472 309.16)",
+          "oklch(72% 0.0472 309.16)",
+          "oklch(83% 0.0472 309.16)",
+          "oklch(95% 0.0472 309.16)"
+        ]
+      },
+      "scene-peach": {
+        "role": "secondary",
+        "displayName": "Scène-peach",
+        "tonalRamp": [
+          "oklch(15% 0.1074 40.85)",
+          "oklch(26% 0.1074 40.85)",
+          "oklch(38% 0.1074 40.85)",
+          "oklch(49% 0.1074 40.85)",
+          "oklch(60% 0.1074 40.85)",
+          "oklch(72% 0.1074 40.85)",
+          "oklch(83% 0.1074 40.85)",
+          "oklch(95% 0.1074 40.85)"
+        ]
+      },
+      "scene-lavender": {
+        "role": "primary",
+        "displayName": "Scène-lavendel",
+        "tonalRamp": [
+          "oklch(15% 0.1424 300.34)",
+          "oklch(26% 0.1424 300.34)",
+          "oklch(38% 0.1424 300.34)",
+          "oklch(49% 0.1424 300.34)",
+          "oklch(60% 0.1424 300.34)",
+          "oklch(72% 0.1424 300.34)",
+          "oklch(83% 0.1424 300.34)",
+          "oklch(95% 0.1424 300.34)"
+        ]
+      },
+      "scene-trim": {
+        "role": "primary",
+        "displayName": "Scènerand",
+        "tonalRamp": [
+          "oklch(15% 0.1214 298.82)",
+          "oklch(26% 0.1214 298.82)",
+          "oklch(38% 0.1214 298.82)",
+          "oklch(49% 0.1214 298.82)",
+          "oklch(60% 0.1214 298.82)",
+          "oklch(72% 0.1214 298.82)",
+          "oklch(83% 0.1214 298.82)",
+          "oklch(95% 0.1214 298.82)"
+        ]
+      },
+      "scene-stitch": {
+        "role": "primary",
+        "displayName": "Scènestiksel",
+        "tonalRamp": [
+          "oklch(15% 0.0747 303.24)",
+          "oklch(26% 0.0747 303.24)",
+          "oklch(38% 0.0747 303.24)",
+          "oklch(49% 0.0747 303.24)",
+          "oklch(60% 0.0747 303.24)",
+          "oklch(72% 0.0747 303.24)",
+          "oklch(83% 0.0747 303.24)",
+          "oklch(95% 0.0747 303.24)"
+        ]
+      },
+      "scene-seam": {
+        "role": "primary",
+        "displayName": "Scènenaad",
+        "tonalRamp": [
+          "oklch(15% 0.1404 300.10)",
+          "oklch(26% 0.1404 300.10)",
+          "oklch(38% 0.1404 300.10)",
+          "oklch(49% 0.1404 300.10)",
+          "oklch(60% 0.1404 300.10)",
+          "oklch(72% 0.1404 300.10)",
+          "oklch(83% 0.1404 300.10)",
+          "oklch(95% 0.1404 300.10)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Resultaat",
+        "purpose": "Selecteerbare inspiratiezin."
+      },
+      "headline": {
+        "displayName": "Weergavetitel",
+        "purpose": "Ondersteunende weergaven."
+      },
+      "body": {
+        "displayName": "Basistekst",
+        "purpose": "Uitleg en gewone inhoud."
+      },
+      "label": {
+        "displayName": "Actielabel",
+        "purpose": "Gedeelde actieknoppen."
+      }
+    },
+    "shadows": [
+      {
+        "name": "switch-knob",
+        "value": "0 2px 4px #44283f20",
+        "purpose": "Kleine schaduw onder het schuifknopje."
+      },
+      {
+        "name": "stage-contact",
+        "value": "radial-gradient(rgba(91,47,72,0.22) 0%, rgba(91,47,72,0.10) 50%, rgba(91,47,72,0) 100%)",
+        "purpose": "Canvastextuur als diffuse contactschaduw onder de mascotte."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(.16, 1, .3, 1)",
+        "purpose": "Gedeelde easing voor bediening en resultaat."
+      },
+      {
+        "name": "control-transition",
+        "value": "160ms",
+        "purpose": "Knoppen en categorieën."
+      },
+      {
+        "name": "switch-transition",
+        "value": "150ms",
+        "purpose": "Instellingsschakelaar."
+      },
+      {
+        "name": "result-reveal",
+        "value": "180ms ease-out, 90ms delay, opacity .65 → 1",
+        "purpose": "Korte verschijning van de resultaattekst; geen verplaatsing."
+      },
+      {
+        "name": "stage-contact",
+        "value": "150ms",
+        "purpose": "Eenmalige publicatie bij contact."
+      },
+      {
+        "name": "stage-settled",
+        "value": "600ms",
+        "purpose": "Herstel van de mascotte; volgende actie beschikbaar."
+      },
+      {
+        "name": "stage-idle",
+        "value": "6000ms, ±.017rad",
+        "purpose": "Kleine rustrotatie; uit bij reduced motion of pauze."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "mobile-width",
+        "value": "600px"
+      },
+      {
+        "name": "narrow-controls",
+        "value": "360px"
+      },
+      {
+        "name": "short-stage",
+        "value": "780px height"
+      },
+      {
+        "name": "compact-intent",
+        "value": "700px height"
+      },
+      {
+        "name": "low-shell",
+        "value": "620px height"
+      },
+      {
+        "name": "flow-height",
+        "value": "540px height"
+      },
+      {
+        "name": "flow-width",
+        "value": "300px"
+      },
+      {
+        "name": "tall-stage",
+        "value": "950px height"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Kopiërenknop",
+      "kind": "button",
+      "description": "Gedeelde primaire actie.",
+      "html": "<button class=\"ds-button-primary\" type=\"button\">Kopiëren</button>",
+      "css": ".ds-button-primary{font-family:var(--font-body,'Nunito Sans',ui-sans-serif,sans-serif);border:0;cursor:pointer;min-height:44px;padding:11px 22px;border-radius:24px;font-size:13px;line-height:1.5;font-weight:700;background:var(--color-ink,#44283f);color:var(--color-surface,#fffaf6);transition:background 160ms var(--ease-out,cubic-bezier(.16,1,.3,1)),transform 160ms var(--ease-out,cubic-bezier(.16,1,.3,1));}.ds-button-primary:hover{background:#60405b;}.ds-button-primary:focus-visible{outline:3px solid var(--color-lavender-strong,#6e4b9d);outline-offset:4px;}.ds-button-primary:active{transform:translateY(1px);}.ds-button-primary:disabled{opacity:.5;cursor:default;}@media(prefers-reduced-motion:reduce){.ds-button-primary{transition:none;}}",
+      "refersTo": "button-primary"
+    },
+    {
+      "name": "Bewarenknop",
+      "kind": "button",
+      "description": "Gedeelde secundaire actie.",
+      "html": "<button class=\"ds-button-secondary\" type=\"button\">Bewaren</button>",
+      "css": ".ds-button-secondary{font-family:var(--font-body,'Nunito Sans',ui-sans-serif,sans-serif);border:0;cursor:pointer;min-height:44px;padding:11px 22px;border-radius:24px;font-size:13px;line-height:1.5;font-weight:700;background:var(--color-lavender-soft,#e9def5);color:var(--color-ink,#44283f);transition:background 160ms var(--ease-out,cubic-bezier(.16,1,.3,1)),transform 160ms var(--ease-out,cubic-bezier(.16,1,.3,1));}.ds-button-secondary:hover{background:#dccbeb;}.ds-button-secondary:focus-visible{outline:3px solid var(--color-lavender-strong,#6e4b9d);outline-offset:4px;}.ds-button-secondary:active{transform:translateY(1px);}.ds-button-secondary:disabled{opacity:.5;cursor:default;}@media(prefers-reduced-motion:reduce){.ds-button-secondary{transition:none;}}",
+      "refersTo": "button-secondary"
+    },
+    {
+      "name": "Pictogramknop",
+      "kind": "button",
+      "description": "Ronde bediening met toegankelijk label.",
+      "html": "<button class=\"ds-icon-button\" aria-label=\"Bewaren\" type=\"button\"><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" aria-hidden=\"true\"><path d=\"M20.4 4.8a5.3 5.3 0 0 0-7.5 0l-.9.9-.9-.9a5.3 5.3 0 0 0-7.5 7.5L12 21l8.4-8.7a5.3 5.3 0 0 0 0-7.5Z\" stroke=\"currentColor\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></button>",
+      "css": ".ds-icon-button{display:inline-flex;justify-content:center;align-items:center;width:44px;min-height:44px;padding:10px;border:0;border-radius:50%;background:transparent;color:var(--color-ink,#44283f);cursor:pointer;transition:background 160ms var(--ease-out,cubic-bezier(.16,1,.3,1));}.ds-icon-button:hover{background:var(--color-lavender-soft,#e9def5);}.ds-icon-button:focus-visible{outline:3px solid var(--color-lavender-strong,#6e4b9d);outline-offset:4px;}",
+      "refersTo": "button-icon"
+    },
+    {
+      "name": "Categoriekeuze",
+      "kind": "chip",
+      "description": "Geselecteerde categorie met een vaste indicator.",
+      "html": "<button class=\"ds-intent\" aria-pressed=\"true\" type=\"button\">Opdrachtje<span class=\"ds-dot\" aria-hidden=\"true\"></span></button>",
+      "css": ".ds-intent{font-family:var(--font-body,'Nunito Sans',ui-sans-serif,sans-serif);display:flex;align-items:center;gap:10px;min-height:44px;padding:10px 18px;border:1px solid var(--color-lavender,#b8a2e8);border-radius:24px;background:var(--color-lavender-soft,#e9def5);color:var(--color-ink,#44283f);font-size:13px;line-height:1.2;font-weight:700;cursor:pointer;transition:background 160ms var(--ease-out,cubic-bezier(.16,1,.3,1)),border-color 160ms var(--ease-out,cubic-bezier(.16,1,.3,1));}.ds-dot{width:5px;height:5px;border-radius:50%;background:var(--color-lavender-strong,#6e4b9d);margin-left:auto;}.ds-intent:hover{background:var(--color-lavender-soft,#e9def5);}.ds-intent:focus-visible{outline:3px solid var(--color-lavender-strong,#6e4b9d);outline-offset:4px;}",
+      "refersTo": "intent-selected"
+    },
+    {
+      "name": "Radiokeuze",
+      "kind": "input",
+      "description": "Situatie- of toonkeuze met een echt invoerveld.",
+      "html": "<label class=\"ds-choice\"><span>Samen</span><input type=\"radio\" name=\"ds-situation\" checked><svg viewBox=\"0 0 24 24\" width=\"17\" height=\"17\" fill=\"none\" aria-hidden=\"true\"><path d=\"m5 12 4 4L19 6\" stroke=\"currentColor\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></label>",
+      "css": ".ds-choice{font-family:var(--font-body,'Nunito Sans',ui-sans-serif,sans-serif);cursor:pointer;position:relative;display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:48px;padding:12px 16px;border:1px solid var(--color-lavender,#b8a2e8);border-radius:12px;background:var(--color-lavender-soft,#e9def5);color:var(--color-ink,#44283f);font-size:14px;}.ds-choice input{position:absolute;opacity:0;width:1px;height:1px;}.ds-choice:has(input:focus-visible){outline:3px solid var(--color-lavender-strong,#6e4b9d);outline-offset:3px;}",
+      "refersTo": "choice-selected"
+    },
+    {
+      "name": "Instellingsschakelaar",
+      "kind": "input",
+      "description": "Optioneel geluid of bewegingspauze.",
+      "html": "<label class=\"ds-setting\"><span>Geluid bij een tik</span><input type=\"checkbox\"><span class=\"ds-switch\" aria-hidden=\"true\"></span></label>",
+      "css": ".ds-setting{font-family:var(--font-body,'Nunito Sans',ui-sans-serif,sans-serif);position:relative;display:flex;align-items:center;gap:16px;padding:24px 0;border-bottom:1px solid var(--color-line,#d9c9ce);color:var(--color-ink,#44283f);font-size:15px;font-weight:700;cursor:pointer;}.ds-setting>span:first-child{flex:1;}.ds-setting input{position:absolute;opacity:0;right:0;width:48px;height:44px;}.ds-switch{flex:0 0 44px;width:44px;height:26px;border-radius:20px;background:var(--color-line,#d9c9ce);padding:3px;transition:background 150ms var(--ease-out,cubic-bezier(.16,1,.3,1));}.ds-switch:after{content:\"\";display:block;width:20px;height:20px;border-radius:50%;background:var(--color-surface,#fffaf6);box-shadow:0 2px 4px #44283f20;transition:transform 150ms var(--ease-out,cubic-bezier(.16,1,.3,1));}.ds-setting input:checked+.ds-switch{background:var(--color-lavender-strong,#6e4b9d);}.ds-setting input:checked+.ds-switch:after{transform:translateX(18px);}.ds-setting input:focus-visible+.ds-switch{outline:3px solid var(--color-lavender-strong,#6e4b9d);outline-offset:4px;}@media(prefers-reduced-motion:reduce){.ds-switch,.ds-switch:after{transition:none;}}"
+    },
+    {
+      "name": "Afstemvlak",
+      "kind": "card",
+      "description": "Selecteerbare zin bij de optionele momentcheck.",
+      "html": "<div class=\"ds-check-in\"><p>Heb je zin in een klein opdrachtje?</p></div>",
+      "css": ".ds-check-in{font-family:var(--font-body,'Nunito Sans',ui-sans-serif,sans-serif);margin-top:16px;padding:16px;border-radius:12px;background:var(--color-lavender-soft,#e9def5);color:var(--color-ink,#44283f);}.ds-check-in p{margin:0;font-size:16px;user-select:text;}",
+      "refersTo": "check-in"
+    },
+    {
+      "name": "Terugnavigatie",
+      "kind": "nav",
+      "description": "Rustige terugknop binnen ondersteuning.",
+      "html": "<nav aria-label=\"Terug\"><button class=\"ds-back\" type=\"button\"><svg viewBox=\"0 0 24 24\" width=\"17\" height=\"17\" fill=\"none\" aria-hidden=\"true\"><path d=\"m10 5-7 7 7 7M3 12h18\" stroke=\"currentColor\" stroke-width=\"1.65\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>Terug</button></nav>",
+      "css": ".ds-back{font-family:var(--font-body,'Nunito Sans',ui-sans-serif,sans-serif);display:inline-flex;gap:8px;align-items:center;justify-content:center;min-height:44px;padding:8px 12px 8px 0;border:0;border-radius:8px;background:transparent;color:var(--color-muted,#765866);font-size:13px;font-weight:600;cursor:pointer;}.ds-back:hover{color:var(--color-lavender-strong,#6e4b9d);}.ds-back:focus-visible{outline:3px solid var(--color-lavender-strong,#6e4b9d);outline-offset:4px;}",
+      "refersTo": "text-navigation"
+    }
+  ],
+  "narrative": {
+    "northStar": "Een speels ritueel voor twee",
+    "overview": "De zachte 3D-snoepmascotte is het tastbare middelpunt. De warme achtergrond en rustige bediening laten het idee leesbaar blijven. Humor zit in de beweging; de tekst blijft kort, volwassen en natuurlijk.\n\nNieuwe functies gebruiken dezelfde kleuren, letters, selectie- en terugkeerpatronen. De expressieve scène blijft gescheiden van de betekenis van het bericht.",
+    "keyCharacteristics": [
+      "Tastbare, geklede mascotte met zachte materialen.",
+      "Rustige tekst naast een expressieve interactie.",
+      "Dezelfde keuzes en terugkeer op ruime en lage schermen.",
+      "Beweging en geluid blijven onder eigen controle."
+    ],
+    "rules": [
+      {
+        "name": "The Selectie Rule",
+        "body": "Selectie gebruikt een licht lavendelvlak, een lavendelrand en herkenbare tekst of een indicator; kleur draagt de staat nooit alleen.",
+        "section": "colors"
+      },
+      {
+        "name": "The Leesbare boodschap Rule",
+        "body": "Een idee blijft selecteerbare HTML-tekst; de scène toont geen noodzakelijke inhoud.",
+        "section": "typography"
+      },
+      {
+        "name": "The Eén tik Rule",
+        "body": "Motion bevestigt één actie; extra input tijdens herstel produceert geen tweede idee.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Gebruik de bestaande tokens en dezelfde knoppen voor nieuwe functies.",
+      "Toon selectie met vorm en tekst, en geef toetsenbordfocus een zichtbare lijn.",
+      "Behoud leesbare resultaattekst, ook zonder 3D, beweging of geluid.",
+      "Gebruik de compacte categoriekeuze op lage schermen en laat extra inhoud bereikbaar blijven."
+    ],
+    "donts": [
+      "Voeg geen tweede visuele wereld toe voor opgeslagen ideeën of toekomstige modules.",
+      "Gebruik kleur of beweging niet als bewijs van stemming, instemming of uitvoering.",
+      "Maak de boodschap niet afhankelijk van een geslaagde 3D-render of hoorbaar geluid.",
+      "Verstop noodzakelijke inhoud niet met overflow om de scrollvrije compositie te behouden."
+    ]
+  }
+}

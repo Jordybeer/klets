@@ -1,0 +1,755 @@
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Tik — algemene ontwerpregels, visuele blueprint en uitbreidingsarchitectuur vóór implementatie."><title>Klets — ontwerpregels & blueprint</title><style>:root{--background:#FFF1E8;--surface:#FFFAF6;--ink:#44283F;--muted:#765866;--peach:#F4B7A7;--lavender:#B8A2E8;--lavender-strong:#6E4B9D;--line:#D9C9CE}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--background);color:var(--ink);font:16px/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:#5A367F;text-underline-offset:4px}a:focus-visible{outline:3px solid var(--lavender-strong);outline-offset:4px}header{max-width:1120px;margin:auto;padding:58px 32px 34px}.eyebrow{font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:700}.hero-title{font-family:Georgia,serif;font-size:clamp(38px,5vw,68px);line-height:1.08;max-width:800px;margin:22px 0 24px;font-weight:500}.intro{max-width:680px;font-size:19px;color:var(--muted)}.meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.meta span{padding:6px 13px;border:1px solid var(--line);border-radius:999px;font-size:13px}.layout{max-width:1120px;margin:auto;padding:0 32px 80px}.overview{background:var(--surface);border-radius:28px;padding:32px;margin-bottom:32px}.overview h2{font:500 29px/1.2 Georgia,serif;margin:0 0 12px}.overview p{max-width:760px}.wireframes{display:grid;grid-template-columns:1fr 1fr;gap:30px;max-width:850px;margin:30px auto 10px}.figure-title{font-weight:700;font-size:15px;margin:0 0 16px}.figure-caption{font-size:13px;color:var(--muted);max-width:310px;margin:14px auto}.phone{background:var(--background);border:1px solid var(--line);border-radius:26px;width:320px;height:716px;padding:18px 16px;display:flex;flex-direction:column;margin:auto;box-shadow:0 10px 22px #44283F0B}.phone-head{height:35px;display:flex;justify-content:space-between;align-items:center}.phone-head b{font:700 27px Georgia,serif}.phone-head b span{color:var(--lavender-strong)}.settings{font-size:12px;text-decoration:underline}.context{display:flex;justify-content:space-between;align-items:center;font-size:13px;height:42px}.context span{font-size:11px;text-decoration:underline}.intents{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:6px 0}.intents span{height:44px;border:1px solid var(--line);border-radius:14px;display:grid;place-items:center;font-size:12px;font-weight:600}.intents .chosen{background:var(--lavender);border-color:var(--lavender-strong)}.stage{position:relative;flex:1;min-height:140px;display:grid;place-items:center;margin:9px 0;color:var(--lavender-strong)}.stage-tag{position:absolute;top:4px;font-size:11px;text-transform:uppercase;letter-spacing:.1em}.object-space{border:1px dashed #B795A6;background:#F4B7A744;width:220px;height:142px;border-radius:32px;display:flex;flex-direction:column;justify-content:center;align-items:center;font-size:15px;text-align:center}.object-space small{font-size:10px;color:var(--muted);margin-top:8px}.stage-caption{position:absolute;bottom:0;font-size:10px;color:var(--muted)}.result{text-align:center;min-height:105px;padding:8px 0 5px}.result small{font-size:10px;letter-spacing:.11em;color:var(--muted)}.result p{font:500 23px/1.25 Georgia,serif;margin:11px 0}.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.actions span{height:44px;border-radius:14px;background:var(--ink);color:var(--surface);display:grid;place-items:center;font-size:12px}.actions span+span{background:transparent;border:1px solid var(--line);color:var(--ink)}.room-link{text-align:center;font-size:12px;min-height:44px;display:grid;place-items:center}.saved-link{font-size:11px;text-align:center;color:var(--muted);min-height:44px;display:grid;place-items:center}.panel-title{padding-top:20px}.panel-title>span{font-size:11px}.panel-title h3{font:500 29px/1.15 Georgia,serif;margin:17px 0 10px}.panel-title p{font-size:13px;color:var(--muted);line-height:1.45}.selected-idea{font:19px/1.3 Georgia,serif;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:8px 0}.checklist{padding-left:20px;margin:15px 0;font-size:13px}.checklist li{padding:6px 0}.check-note{font-size:11px;line-height:1.4;color:var(--muted);margin:6px 0 14px}.panel-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto}.panel-actions span{border:1px solid var(--line);border-radius:13px;display:grid;place-items:center;min-height:43px;font-size:11px;text-align:center}.panel-actions span:first-child{background:var(--ink);color:var(--surface)}.legend{font-size:13px;margin:22px 0 0;color:var(--muted)}.desktop-layout{background:var(--background);border:1px solid var(--line);border-radius:20px;padding:20px;margin:28px 0 8px;min-height:175px;display:grid;grid-template-columns:1fr 2fr 1fr;gap:16px}.desktop-quiet{color:var(--muted);font-size:12px;display:flex;align-items:center;text-align:center;justify-content:center}.desktop-core{border:1px dashed #B795A6;border-radius:12px;text-align:center;padding:20px 14px;font-size:14px}.desktop-core strong{display:block}.desktop-core small{display:block;margin-top:8px;font-size:12px}.swatches{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.swatch{min-width:132px;border-radius:13px;border:1px solid var(--line);overflow:hidden;background:var(--surface)}.swatch i{display:block;height:36px}.swatch span{display:block;padding:7px 10px;font-size:11px}.document-grid{display:grid;grid-template-columns:220px 1fr;gap:38px}.contents{align-self:start;position:sticky;top:22px}.contents b{font-size:13px}.contents a{display:block;font-size:12px;text-decoration:none;margin-top:10px;color:var(--muted)}.contents a:hover{color:var(--ink);text-decoration:underline}article{min-width:0}article h2{font:500 32px/1.2 Georgia,serif;padding-top:24px;margin:22px 0 16px;scroll-margin-top:20px}article h3{font-size:19px;margin:28px 0 12px}article p{max-width:75ch}article table{width:100%;border-collapse:collapse;font-size:13px;line-height:1.5;margin:20px 0;display:block;overflow:auto}article th{text-align:left;background:#B8A2E825;font-size:12px}article th,article td{padding:12px 11px;vertical-align:top;border-bottom:1px solid var(--line)}article th:first-child,article td:first-child{min-width:120px}article th:last-child,article td:last-child{min-width:180px}article li{padding:3px 0}article code{background:var(--surface);padding:2px 5px;border-radius:4px}.architecture{border:1px solid var(--line);border-radius:20px;background:var(--surface);padding:20px;text-align:center;font-size:13px}.arch-top,.arch-mid,.arch-bottom,.arch-row>div{padding:12px;border-radius:12px;background:#B8A2E825}.arch-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}.arch-row small{color:var(--muted)}.arch-mid{background:#F4B7A733;margin:12px 0}.arch-bottom{font-size:12px}.architecture p{font-size:11px;color:var(--muted);margin:14px auto 0}footer{max-width:1120px;margin:auto;border-top:1px solid var(--line);padding:24px 32px 40px;font-size:12px;color:var(--muted)} @media(max-width:850px){.document-grid{grid-template-columns:1fr}.contents{position:static;display:flex;flex-wrap:wrap;gap:9px 15px}.contents b{width:100%}.contents a{margin:0}.wireframes{grid-template-columns:1fr}.overview{padding:22px}.layout{padding:0 18px 50px}header{padding:36px 20px 25px}.desktop-layout{grid-template-columns:1fr}.desktop-quiet{display:none}.phone{max-width:100%}article h2{font-size:28px}} @media print{body{background:white;font-size:11pt}header,.layout{max-width:none;padding:12px}.document-grid{display:block}.contents{display:none}.overview{break-after:page}.wireframes{grid-template-columns:1fr 1fr;gap:20px}.phone{transform:scale(.9);transform-origin:top center}.figure-caption{margin-top:-35px}article table{display:table;font-size:8pt}article h2{break-after:avoid}article tr{break-inside:avoid}footer{padding:12px}a{color:inherit}.meta span{font-size:10pt}}
+.wireframes{grid-template-columns:repeat(3,minmax(0,1fr));max-width:1040px;gap:18px}.compact-phone{height:568px;padding:12px;flex:none;border:0;outline:1px solid var(--line)}.compact-phone>*{flex-shrink:0}.compact-phone .phone-head{height:36px}.compact-phone .context{height:40px}.compact-category{height:44px;border:1px solid var(--lavender-strong);background:var(--lavender);border-radius:14px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;margin:8px 0;font-size:12px;font-weight:600}.compact-category span{font-size:10px;font-weight:400}.compact-phone .stage{height:164px;min-height:164px;flex:none;margin:0 0 8px}.compact-phone .object-space{height:120px;max-width:90%}.compact-phone .result{height:104px;min-height:104px}.compact-phone .result p{font-size:22px}.compact-phone .result small{font-size:9px}.compact-phone .settings{font-size:10px}.contents a{min-height:32px;display:flex;align-items:center}.mini-audit-note{font-size:12px;color:var(--muted)}@media(max-width:980px){.wireframes{grid-template-columns:1fr;gap:28px}.phone{width:320px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}@media print{.wireframes{grid-template-columns:1fr 1fr}.wireframes figure{break-inside:avoid}}</style></head><body><header><div class="eyebrow">Klets · ontwerpfundament 0.3</div><h1 class="hero-title">Een speels ritueel<br>voor twee.</h1><p class="intro">Een samenhangend systeem voor passende inspiratie, tastbare interactie en uitbreidingen die dezelfde taal spreken.</p><div class="meta"><span>13 oktober 2026</span><span>Voorstel vóór implementatie</span><span>Mini-audit verwerkt</span></div></header><main class="layout"><section class="overview"><h2>De eerste viewport en haar verdieping</h2><p>Eén herkenbaar middelpunt. Eén bruikbaar idee. Extra functies krijgen een vaste plek in ondersteunende weergaven, met dezelfde toestand en terugkeer.</p><div class="wireframes"><figure style="margin:0"><figcaption class="figure-title">01 · Ruime generator</figcaption><div class="phone "><div class="phone-head"><b>klets<span>•</span></b><span class="settings">Instellingen</span></div><div class="context">Samen · Speels <span>Aanpassen</span></div><div class="intents"><span class="chosen">Opdrachtje</span><span>Plagen</span><span>Waardering</span><span>Verlangen</span></div><div class="stage"><span class="stage-tag">3D-stage</span><div class="object-space">Bewegende mascotte<br><small>aanraken → tik → terugvering</small></div><span class="stage-caption">Eén hoofdhandeling</span></div><div class="result"><small>OPDRACHTJE</small><p>Als ik straks thuiskom,<br>wil ik eerst een kus.</p></div><div class="actions"><span>Kopiëren</span><span>Bewaren</span></div><div class="room-link">Past dit nu?</div><div class="saved-link">Opgeslagen ideeën</div></div><p class="figure-caption">Schematische structuur. De 3D-stage is bewust een placeholder; de asset en animatie bestaan nog niet.</p></figure><figure style="margin:0"><figcaption class="figure-title">02 · Compacte generator</figcaption><div class="phone compact-phone"><div class="phone-head"><b>klets<span>•</span></b><span class="settings">Instellingen</span></div><div class="context">Samen · Speels <span>Aanpassen</span></div><div class="compact-category">Opdrachtje <span>Wijzigen ↓</span></div><div class="stage"><span class="stage-tag">3D-stage</span><div class="object-space">Bewegende mascotte<br><small>52 px meer ruimte voor het object</small></div><span class="stage-caption">Tik voor een idee</span></div><div class="result"><small>SAMEN · SPEELS · OPDRACHTJE</small><p>Als ik straks thuiskom,<br>wil ik eerst een kus.</p></div><div class="actions"><span>Kopiëren</span><span>Bewaren</span></div><div class="room-link">Past dit nu?</div><div class="saved-link">Opgeslagen ideeën</div></div><p class="figure-caption">Eén categorieknop geeft het object meer ruimte. De gekozen categorie blijft zichtbaar; dezelfde acties blijven bereikbaar.</p></figure><figure style="margin:0"><figcaption class="figure-title">03 · Momentcheck</figcaption><div class="phone check-phone"><div class="phone-head"><b>klets<span>•</span></b><span class="settings">Instellingen</span></div><div class="panel-title"><span>← Terug</span><h3>Past dit nu?</h3><p>Even kijken wat bij<br>dit moment past.</p></div><div class="selected-idea">Als ik straks thuiskom,<br>wil ik eerst een kus.</div><ol class="checklist"><li>Heeft ze ruimte en privacy?</li><li>Is er speelse aansluiting?</li><li>Staat er nog een verzoek open?</li></ol><div class="check-note">Een denkhulp.<br>Geen antwoord namens haar.</div><div class="panel-actions"><span>Terug naar idee</span><span>Bewaren voor later</span><span>Ander idee</span><span>Eerst afstemmen</span></div></div><p class="figure-caption">Dezelfde shell, een andere taak. Geen partnerstatus, score of automatisch groen licht.</p></figure></div><div class="desktop-layout"><div class="desktop-quiet">Extra breedte geeft lucht.</div><div class="desktop-core"><strong>Dezelfde verticale kern op desktop</strong><small>Oriëntatie → context → stage → idee → eigen keuze</small><small>Ondersteuning opent één weergave tegelijk.</small></div><div class="desktop-quiet">Geen extra taken naast het ritueel.</div></div><p class="legend">Dit is een blueprint, geen interactieve app of goedgekeurde pixelmockup. De appweergave wordt later op echte viewporthoogte, tekstzoom en veilige randen getoetst.</p><div class="swatches"><div class="swatch"><i style="background:#FFF1E8"></i><span>Crème · achtergrond<br>#FFF1E8</span></div><div class="swatch"><i style="background:#F4B7A7"></i><span>Peach · materiaal<br>#F4B7A7</span></div><div class="swatch"><i style="background:#B8A2E8"></i><span>Lavendel · selectie<br>#B8A2E8</span></div><div class="swatch"><i style="background:#44283F"></i><span>Pruim · tekst / focus<br>#44283F</span></div></div></section><div class="document-grid"><nav class="contents" aria-label="Inhoud"><b>Het fundament</b><a href="#section-1">1. Productbeslissing</a><a href="#section-2">2. Algemene regels voor iedere ontwerpkeuze</a><a href="#section-3">3. Relatie- en tekstregels</a><a href="#section-4">4. Informatiearchitectuur</a><a href="#section-5">5. Blueprint van de eerste weergave</a><a href="#section-6">6. Resultaat en toestand</a><a href="#section-7">7. Momentcheck: ‘Past dit nu?’</a><a href="#section-8">8. Visueel systeem</a><a href="#section-9">9. Motioncontract</a><a href="#section-10">10. React- en gegevensblueprint</a><a href="#section-11">11. Groei zonder aangeplakte functies</a><a href="#section-12">12. Toetsing en besluitvorming</a><a href="#section-13">13. Mini-audit van de afwerking</a></nav><article>
+<p>Versie 0.3 · 13 oktober 2026 · status: afgewerkt voorstel voor beoordeling, vóór implementatie.</p>
+<p>Klets is de gekozen productnaam. Deze specificatie beschrijft een samenhangend systeem, de eerste appweergave en grenzen voor latere uitbreiding. Het bijbehorende HTML-bestand toont schematische layouts en ontwerpvoorbeelden. Het is een ontwerpdocument; de app en 3D-assets zijn nog niet gebouwd.</p>
+<h2 id="section-1">1. Productbeslissing</h2>
+<p>De kern is een speels ritueel voor twee: kies de situatie, geef de mascotte een tik, lees één passend idee en beslis zelf wat je ermee doet. De gebruiker zoekt inspiratie om initiatief, aandacht en verbinding vorm te geven binnen een volwassen D/s-dynamiek. De ontvangende partner moet een begrijpelijk bericht krijgen, zonder verborgen verplichting of onbekende spelregels.</p>
+<p>Het eerste scherm dient één taak: een bruikbaar idee vinden. Latere functies krijgen ruimte via ondersteunende weergaven, terwijl de herkenbare kernhandeling behouden blijft.</p>
+<h3>Vastgesteld en voorgesteld</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Beslissing</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Door gebruiker gevraagd</td>
+<td>React; single page; standaardweergave zonder scroll; centraal bewegende billen; hand geeft een tik; vervolgens één idee; veel meer inhoud; verzorgde, speelse motion.</td>
+</tr>
+<tr>
+<td>Door gebruiker gekozen</td>
+<td>Zachte 3D-snoepvormen, cartoonbillen in een broekje, peach/lavendel en veeranimaties.</td>
+</tr>
+<tr>
+<td>Nu gevraagd</td>
+<td>Algemene ontwerpregels en een blueprint die toekomstige functies samenhangend ondersteunt.</td>
+</tr>
+<tr>
+<td>Ontwerpvoorstel</td>
+<td>160 ideeën, vier categorieën; Samen/Op afstand; drie tonen; momentcheck; kopiëren; lokale favorieten.</td>
+</tr>
+<tr>
+<td>Open vóór bouwen</td>
+<td>Mockup vóór code of direct vanuit code; definitieve assets/fonts; hosting.</td>
+</tr>
+<tr>
+<td>Latere opties</td>
+<td>Eigen ideeën, initiatief vanuit beide rollen, gedeelde voorkeuren, punten/coupons, agenda of integraties. Geen van deze opties wordt nu alvast gebouwd.</td>
+</tr>
+</tbody></table>
+<h3>Drie mogelijke structuren</h3>
+<table>
+<thead>
+<tr>
+<th>Structuur</th>
+<th>Gevolg</th>
+<th>Oordeel</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Generator met ondersteunende weergaven</td>
+<td>Eén snelle kernhandeling, herkenbare verdieping en ruimte om uit te breiden.</td>
+<td>Aanbevolen.</td>
+</tr>
+<tr>
+<td>Dashboard met alle modules tegelijk</td>
+<td>Veel functies onmiddellijk zichtbaar; kost ruimte en verzwakt de scrollvrije kern.</td>
+<td>Past later eventueel bij een aparte overzichtstaak.</td>
+</tr>
+<tr>
+<td>Verplichte contextwizard vóór ieder idee</td>
+<td>Veel afstemming; voegt stappen toe bij herhaald gebruik.</td>
+<td>Geschikt voor een eventuele eenmalige voorkeursinstelling.</td>
+</tr>
+</tbody></table>
+<h2 id="section-2">2. Algemene regels voor iedere ontwerpkeuze</h2>
+<table>
+<thead>
+<tr>
+<th>Regel</th>
+<th>Gevolg in het ontwerp</th>
+<th>Controle bij een nieuwe functie</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Eén hoofdhandeling per weergave</td>
+<td>Het middelpunt trekt een idee; nevenacties hebben minder nadruk.</td>
+<td>Kan iemand de eerstvolgende handeling onmiddellijk aanwijzen?</td>
+</tr>
+<tr>
+<td>Passendheid vóór variatie</td>
+<td>Eerst filteren op context, categorie en toon; daarna variëren.</td>
+<td>Past elke nieuwe trekking bij de selectie die bij activering is vastgelegd?</td>
+</tr>
+<tr>
+<td>Begrijpelijk voor beide rollen</td>
+<td>Elke zin maakt doel, timing en omvang duidelijk waar dat nodig is.</td>
+<td>Begrijpt de ontvanger het bericht zonder de app te kennen?</td>
+</tr>
+<tr>
+<td>Voorstellen en werkelijkheid blijven gescheiden</td>
+<td>Trekken, kopiëren en bewaren zeggen alleen iets over appgebruik.</td>
+<td>Wordt een klik nergens gelezen als verzending, uitvoering of instemming?</td>
+</tr>
+<tr>
+<td>Selectie en resultaat blijven herkenbaar</td>
+<td>Actieve filters sturen de volgende tik; het resultaat toont de selectie van zijn eigen trekking.</td>
+<td>Is duidelijk welke keuze het huidige idee opleverde en welke keuze straks geldt?</td>
+</tr>
+<tr>
+<td>Beweging heeft betekenis</td>
+<td>Iedere motion hoort bij contact, selectie, onthulling of terugkeer.</td>
+<td>Welk resultaat bevestigt deze beweging?</td>
+</tr>
+<tr>
+<td>Leesbaarheid blijft stabiel</td>
+<td>De resultaatruimte verspringt niet; acties staan op vaste plekken.</td>
+<td>Blijven tekst en knoppen zichtbaar bij de langste toegestane zin?</td>
+</tr>
+<tr>
+<td>Diepte via één vast patroon</td>
+<td>Verdieping gebruikt dezelfde ondersteunende weergave en terugkeer.</td>
+<td>Herkent de gebruiker openen, sluiten en hervatten?</td>
+</tr>
+<tr>
+<td>Uitbreiding gebruikt gedeelde begrippen</td>
+<td>Nieuwe modules gebruiken bestaande context, ideeën en voorkeuren.</td>
+<td>Introduceert deze functie een dubbel begrip of afwijkende betekenis?</td>
+</tr>
+<tr>
+<td>Herstel is onderdeel van de functie</td>
+<td>Fouten hebben een begrijpelijke status en bruikbare volgende actie.</td>
+<td>Kan iemand doorgaan zonder een pagina te herladen?</td>
+</tr>
+<tr>
+<td>Persoonlijke keuzes zijn omkeerbaar</td>
+<td>Bewaren, aanpassen en een herinnering instellen hebben een terugweg.</td>
+<td>Kan de gebruiker de wijziging terugvinden en herstellen?</td>
+</tr>
+</tbody></table>
+<p>Nieuwe functies beschrijven vooraf: gebruikssituatie, primaire handeling, plek in de shell, gegevens die nodig zijn, effect op beide rollen, fout/herstel en motion. Pas daarna volgt een schermontwerp.</p>
+<h2 id="section-3">3. Relatie- en tekstregels</h2>
+<p>De app geeft inspiratie. Zij kan de beleving van de partner niet bepalen. Een nieuwe dynamiek vraagt duidelijke, kleine uitnodigingen en verzoekjes; de gebruiker kiest wat bij de gezamenlijke afspraken past.</p>
+<ul>
+<li>Een opdrachtje, plagerige aandacht, waardering en verlangen zijn verschillende intenties. Ze hebben geen automatische vervolgverplichting.</li>
+<li>Geen escalatie door vaker klikken, langere sessies, verzonnen stemming of vermeende gehoorzaamheid.</li>
+<li>Geen veronderstelling dat een late reactie moet worden goedgemaakt. Tijd om een activiteit te doen wordt duidelijk onderscheiden van een antwoordtermijn.</li>
+<li>Geen automatisch puntenverlies, streak voor gehoorzaamheid of cijfer dat de partner als persoon beoordeelt. Een gezamenlijk afgesproken puntensaldo voor concrete erkenning kan in een latere beloningsmodule zichtbaar zijn.</li>
+<li>Good Girl Points zijn een mogelijke afzonderlijke module voor bewuste erkenning achteraf. De reden blijft concreet; gewone waardering blijft beschikbaar zonder punten.</li>
+<li>Eigen initiatief en afstemmen kunnen beide een positieve plek krijgen. Een eventueel sub-perspectief heeft eigen keuzes en mag geen eenvoudige takenbak van de Dom worden.</li>
+<li>Geen vaste psychologische wachttijd of mathematische formule voor wanneer een nieuw verzoek gepast is. De momentcheck ondersteunt nadenken.</li>
+<li>Tekst is kort, natuurlijk Nederlands: één gedachte per zin, vaak 6–18 woorden. Een langere zin kan alleen als zij een noodzakelijke begrenzing duidelijk maakt.</li>
+<li>De eerste inhoudsset blijft niet-grafisch: kleine verzoekjes, flirten, nabijheid, waardering en speelse aandacht.</li>
+<li>De mascotte is gestileerd en gekleed. Zij vertegenwoordigt geen echte partner en deelt geen straf uit voor een reactie.</li>
+</ul>
+<h3>Voorbeelden van de vier intenties</h3>
+<table>
+<thead>
+<tr>
+<th>Intentie</th>
+<th>Voorbeeld</th>
+<th>Wat het duidelijk maakt</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Opdrachtje</td>
+<td>Als ik straks thuiskom, wil ik eerst een kus.</td>
+<td>Kleine, begrijpelijke verwachting op een benoemd moment.</td>
+</tr>
+<tr>
+<td>Plagen</td>
+<td>Ja, ik zat naar je te kijken.</td>
+<td>Speelse aandacht; geen taak.</td>
+</tr>
+<tr>
+<td>Waardering</td>
+<td>Ik moest lachen om je appje. Dat had ik even nodig.</td>
+<td>Concrete waardering; geen score nodig.</td>
+</tr>
+<tr>
+<td>Verlangen</td>
+<td>Ik heb zin om je te kussen.</td>
+<td>Uitgesproken verlangen; de app kent het antwoord niet.</td>
+</tr>
+</tbody></table>
+<p>De 160 ideeën worden per intentie geschreven en inhoudelijk gecontroleerd. Synoniemen met dezelfde boodschap tellen niet als betekenisvolle variatie.</p>
+<h2 id="section-4">4. Informatiearchitectuur</h2>
+<h3>De blijvende shell</h3>
+<p>De shell beheert alleen de huidige weergave, de terugkeer en de gebruikersvoorkeuren. De drie vaste zones zijn bovenaan oriëntatie, centraal de huidige taak en onderaan ondersteunende acties.</p>
+<table>
+<thead>
+<tr>
+<th>Zone</th>
+<th>Eerste versie</th>
+<th>Groei blijft hierin passen</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Oriëntatie</td>
+<td>Werknaam; compacte instellingenknop.</td>
+<td>Naam, accountstatus wanneer relevant, zichtbare terugkeer.</td>
+</tr>
+<tr>
+<td>Context</td>
+<td>Samen/Op afstand; toon en categorie.</td>
+<td>Later aanvullende afgesproken voorkeuren via dezelfde instellingsweergave.</td>
+</tr>
+<tr>
+<td>Kern</td>
+<td>Interactief 3D-object; één inspiratie.</td>
+<td>Andere ideeënsets en eventueel rolgebonden inspiratie met hetzelfde resultaatpatroon.</td>
+</tr>
+<tr>
+<td>Hulpmiddelen</td>
+<td>Kopiëren, bewaren, Past dit nu?, opgeslagen ideeën.</td>
+<td>Eigen inhoud, gezamenlijke voorkeuren, erkenning en afspraken.</td>
+</tr>
+</tbody></table>
+<p>De hoofdweergave heeft een compacte contextsamenvatting met een bewerkknop. Bij voldoende hoogte staan de vier categorieën als een 2×2-selectie boven de stage. Bij minder dan circa 640 px bruikbare inhoudshoogte wordt dat één 44 px hoge knop met de huidige categorie, bijvoorbeeld ‘Opdrachtje · Wijzigen’. Zij opent dezelfde categorieën in een ondersteunende selectie. Zo krijgt de mascotte op kleine schermen extra ruimte zonder kleinere hitboxes of verborgen geselecteerde toestand. Een categorie tik je direct aan; zij geldt meteen voor de volgende trekking. In de compacte selectie bevestigt de categorietik tegelijk de keuze en de terugkeer; sluiten zonder keuze behoudt de vorige categorie. Er is geen extra bevestigingsknop voor deze ene keuze. Situatie en toon worden samen in de contextweergave aangepast met bevestigen/annuleren: een voorlopige wijziging heeft geen effect op de generator tot zij bevestigd is.</p>
+<p>De drie tonen zijn <strong>Lief</strong> (warm, uitnodigend), <strong>Speels</strong> (licht plagerig) en <strong>Direct</strong> (kort, beslist, binnen dezelfde afgesproken grenzen). Toon is een manier van formuleren, geen schaal voor seksuele intensiteit of verplichting. Een idee kan meerdere passende toonlabels hebben. Redactionele controle telt de werkelijk verschillende ideeën per combinatie van situatie, intentie en toon; veertig zinnen per intentie garanderen die dekking niet. Een aangeboden combinatie krijgt bruikbare inhoud of een eerlijk benoemde beperkte/lege reeks.</p>
+<h3>Plek voor ondersteuning</h3>
+<p>Instellingen, opgeslagen ideeën en de momentcheck gebruiken hetzelfde paneelpatroon: titel, terug/sluiten, eigen taak, bevestiging indien nodig. Er staat één paneel tegelijk open. Op mobiel vervangt het paneel de centrale inhoud; op desktop gebruikt het een gecentreerde weergave binnen de shell. De generator is tijdens ondersteuning inactief. Focus gaat naar de paneeltitel; Terug, Escape en de browser-terugactie keren terug naar de aanroepende weergave en herstellen focus op de opener. Is die opener door een responsieve wissel verdwenen, dan gaat focus naar de teruggekeerde weergavetitel. Bewerken van context vanuit de momentcheck keert na bevestiging terug naar de momentcheck. De shell bewaart daarom een kleine terugkeerroute; er bestaan geen gestapelde zichtbare panelen. Alleen intern geopende ondersteunende weergaven voegen een navigatiestap toe; browser-terug op de normale generator wordt niet onderschept om iemand in de app vast te houden. Voorlopige instellingen worden bij annuleren verworpen. De paneelovergang is dezelfde rustige korte crossfade in alle modules.</p>
+<p>De normale generator blijft zonder scroll. Lange toekomstige bibliotheken gebruiken paginering; korte panelen passen binnen de viewport. Wanneer grote tekst, zoom, een toetsenbord, landscape of een onverwacht kleine viewport meer ruimte vraagt, krijgt bereikbare inhoud voorrang en mag iedere weergave, ook de generator, scrollen. Geen verborgen clipping om een technische eis cosmetisch te halen. Versie 1 heeft Dom-side bediening; de sub heeft begrijpelijke ontvangen tekst. Zelfstandige bediening vanuit beide rollen wordt pas in een latere gebruikssituatie ontworpen.</p>
+<h2 id="section-5">5. Blueprint van de eerste weergave</h2>
+<p>Van boven naar beneden:</p>
+<ol>
+<li>Compacte merkregel: Klets links, instellingen rechts.</li>
+<li>Contextsamenvatting: bijvoorbeeld ‘Samen · Speels’, met ‘Aanpassen’.</li>
+<li>Categorieën: Opdrachtje, Plagen, Waardering, Verlangen. Bij voldoende hoogte een 2×2-raster; op lage schermen één categorieknop. Standaard: Opdrachtje. ‘Alles’ kan later alleen worden toegevoegd als de mix nuttig blijkt.</li>
+<li>3D-stage: centraal, met de billen als groot aanraakvlak en de uitnodiging ‘Tik voor een idee’ bij eerste bezoek. De toegankelijke knopnaam blijft ‘Nieuw passend idee’, ook wanneer de getoonde zin verandert.</li>
+<li>Resultaatgebied: een bescheiden intentielabel en één zin. Vóór de eerste tik staat hier uitleg op dezelfde plek.</li>
+<li>Actierij: Kopiëren, Bewaren. Een tekstknop ‘Past dit nu?’ staat eronder.</li>
+<li>Ondersteunende toegang: opgeslagen ideeën en eventuele status van de laatste eigen actie.</li>
+</ol>
+<p>Desktop behoudt dit verticale ritueel. Extra breedte geeft het object en de tekst meer lucht; er komen geen extra taken naast het hoofdmoment.</p>
+<h3>Ruimtebudget, als startpunt voor de bouw</h3>
+<p>Deze maten zijn voorgestelde ontwerpwaarden, geen gemeten browserresultaten. Hoogte is de resterende inhoudshoogte na browserchrome en veilige randen.</p>
+<table>
+<thead>
+<tr>
+<th>Gebied</th>
+<th>320×568 compacte viewport</th>
+<th>390×844 viewport</th>
+<th>1440×900 viewport</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Buitenruimte</td>
+<td>12 px</td>
+<td>20 px</td>
+<td>32 px</td>
+</tr>
+<tr>
+<td>Oriëntatie + context</td>
+<td>circa 76 px</td>
+<td>circa 90 px</td>
+<td>circa 100 px</td>
+</tr>
+<tr>
+<td>Categorieën</td>
+<td>Eén categorieknop van 44 px</td>
+<td>2×44 px, 8 px tussen rijen</td>
+<td>maximaal 520 px breed</td>
+</tr>
+<tr>
+<td>Stage</td>
+<td>circa 164 px, flexibel</td>
+<td>circa 270–300 px, flexibel</td>
+<td>circa 300–340 px</td>
+</tr>
+<tr>
+<td>Resultaat</td>
+<td>circa 104 px inclusief context</td>
+<td>circa 130 px</td>
+<td>circa 130–150 px</td>
+</tr>
+<tr>
+<td>Acties + momentcheck</td>
+<td>circa 88 px</td>
+<td>circa 88 px</td>
+<td>circa 88 px</td>
+</tr>
+<tr>
+<td>Overige ruimte</td>
+<td>Verdeeld over kleine gaps; decoratie verdwijnt.</td>
+<td>Ruime, rustige gaps.</td>
+<td>Verticale compositie maximaal 600 px breed.</td>
+</tr>
+</tbody></table>
+<p>De stage krimpt eerst nadat de compacte categorievariant is toegepast. Lettergrootte en hitboxes worden niet steeds kleiner gemaakt. Voor de compacte variant wordt de volledige 568 px als volgt gebudgetteerd: 24 px buitenruimte, 76 px oriëntatie/context, 44 px categorieknop, 164 px stage, 104 px resultaat inclusief contextlabel, 88 px resultaat-acties/momentcheck, 44 px toegang tot opgeslagen ideeën en 24 px overige gaps. Dat telt op tot 568 px. De twee actierijen en de toegang tot opgeslagen ideeën behouden ieder een 44 px hitbox; statusberichten gebruiken bestaande ruimte en verschijnen niet als extra rij. Wanneer tekst of veilige randen dit budget overschrijden, treedt de toegankelijke overflowregel in werking. Het latere browseronderzoek moet de totale som, lange teksten, veilige randen en browserchrome bevestigen; dit tabelbudget is geen bewijs van een geslaagde pasvorm.</p>
+<h2 id="section-6">6. Resultaat en toestand</h2>
+<p>De controller controleert bij activering eerst of er passende ideeën zijn. Bij nul kandidaten ontstaat geen trekking en geen contactanimatie: de lege toestand en ‘Selectie aanpassen’ verschijnen direct, terwijl een bestaand resultaat zijn eigen context behoudt. Pas een geldige trekking wordt als geaccepteerde tik behandeld. Die reserveert direct precies één idee en legt de selectie, getoonde tekst, intentie en actie-ID vast. Het contactmoment onthult dit voorbereide resultaat; filters die intussen veranderen gelden voor de volgende tik. Een wijziging van context houdt het bestaande resultaat zichtbaar met een expliciet label, bijvoorbeeld ‘Dit idee: Samen · Speels · Opdrachtje’. De contextsamenvatting krijgt bij verschil de toevoeging ‘Voor je volgende tik’. De app herschrijft de oude zin niet stilzwijgend.</p>
+<p>Kopiëren, bewaren en momentcheck gebruiken een snapshot van het resultaat dat bij hun activering daadwerkelijk getoond wordt. Als een paneel opent of de tab verborgen raakt vóór contact, wordt de voorbereide trekking één keer afgerond en gepubliceerd voordat de decoratieve motion pauzeert. De knop komt bij terugkeer in een bruikbare rusttoestand; een geaccepteerde trekking gaat nooit verloren. Late callbacks zijn door de actie-ID onschadelijk.</p>
+<table>
+<thead>
+<tr>
+<th>Toestand</th>
+<th>Zichtbaar gedrag</th>
+<th>Herstel of volgende actie</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Eerste bezoek</td>
+<td>Korte uitleg waar later de zin staat; standaardselectie zichtbaar. Resultaat-acties zijn inactief met begrijpelijke uitleg.</td>
+<td>Tik of wijzig selectie.</td>
+</tr>
+<tr>
+<td>Rust</td>
+<td>Laatste resultaat en keuzes blijven leesbaar.</td>
+<td>Tik voor volgend passend idee.</td>
+</tr>
+<tr>
+<td>Actie bezig</td>
+<td>Hand en terugvering; bestaande inhoud blijft bereikbaar.</td>
+<td>Extra tikken worden tot rust genegeerd; geen wachtrij.</td>
+</tr>
+<tr>
+<td>Contactmoment</td>
+<td>Het reeds gereserveerde idee wordt één keer gepubliceerd.</td>
+<td>Onthulling begint; screenreader meldt de nieuwe zin eenmaal.</td>
+</tr>
+<tr>
+<td>Kopiëren geslaagd</td>
+<td>Tijdelijke status ‘Gekopieerd’.</td>
+<td>Geen aanname van verzending.</td>
+</tr>
+<tr>
+<td>Clipboard geweigerd</td>
+<td>Zin blijft selecteerbaar; ‘Selecteer en kopieer de tekst’.</td>
+<td>Handmatige kopie.</td>
+</tr>
+<tr>
+<td>Geen passende ideeën</td>
+<td>‘Voor deze selectie heb ik nog geen nieuw idee.’ Een eventueel vorig resultaat blijft met zijn eigen context zichtbaar; zonder resultaat zijn acties inactief.</td>
+<td>Directe actie ‘Selectie aanpassen’; nooit stilzwijgend verruimen.</td>
+</tr>
+<tr>
+<td>Reeks doorlopen</td>
+<td>Zelfde selectie krijgt een opnieuw gemengde reeks; laatste idee komt niet direct terug wanneer meer dan één idee past.</td>
+<td>Gewoon doorgaan.</td>
+</tr>
+<tr>
+<td>Opslag geweigerd</td>
+<td>‘Bewaard voor deze sessie’; favoriet blijft beschikbaar zolang de app open is.</td>
+<td>Geen valse claim van blijvende opslag.</td>
+</tr>
+<tr>
+<td>3D niet beschikbaar</td>
+<td>Statische, geklede fallback en dezelfde toegankelijke activering.</td>
+<td>Ideeën blijven volledig bruikbaar.</td>
+</tr>
+<tr>
+<td>Ondersteunend paneel open</td>
+<td>Generator pauzeert; terugkeer bewaart selectie en idee.</td>
+<td>Terug/sluiten.</td>
+</tr>
+</tbody></table>
+<p>In een set met één passend idee is herhaling eerlijk onvermijdelijk; de app vermeldt ‘Enige idee in deze selectie’. Andere filters worden niet zonder keuze toegevoegd.</p>
+<p>Opgeslagen ideeën hebben een lege toestand ‘Je hebt nog geen ideeën bewaard’, met ‘Terug naar inspiratie’. Versie 1 bewaart één favoriet per idee-ID. Na bewaren verandert de actie in ‘Bewaard’, herkenbaar door tekst én een vinkje; opnieuw activeren meldt ‘Dit idee is al bewaard’ en maakt geen duplicaat. De oorspronkelijke snapshot blijft behouden. Verwijderen gebeurt expliciet in de opgeslagen weergave, meldt welk idee is verwijderd en biedt tijdelijk ‘Ongedaan maken’. Een sessiefavoriet wordt ‘Bewaard voor deze sessie’ genoemd. Geen enkele opslag- of clipboardmelding schuift naar een ander resultaat wanneer dat later verschijnt; de melding hoort bij de eigen actie en haar snapshot.</p>
+<h2 id="section-7">7. Momentcheck: ‘Past dit nu?’</h2>
+<p>Dit is een optionele denkhulp bij het gekozen idee. De app interpreteert geen antwoord namens de partner en geeft geen groene toestemmingsbadge.</p>
+<p>Het paneel toont het huidige idee met drie reflectievragen:</p>
+<ol>
+<li>Heeft ze nu ruimte en, waar nodig, privacy?</li>
+<li>Is er speelse aansluiting, of zou ik eerst even contact maken?</li>
+<li>Alleen bij een opdrachtje: heb ik al iets gevraagd waarop nog geen antwoord kwam? Bij plagen of verlangen: past deze toon bij ons contact van nu? Bij waardering: benoem ik iets concreets dat ik werkelijk waardeer?</li>
+</ol>
+<p>Daaronder staan ‘Terug naar idee’, ‘Bewaren voor later’, ‘Ander idee’ en, waar zinvol, ‘Eerst afstemmen’. Bewaren bevestigt de opslagstatus en keert terug; ander idee keert terug en start één trekking binnen dezelfde selectie. Afstemmen toont alleen een zin die bij de intentie hoort: bijvoorbeeld ‘Heb je zin in een klein opdrachtje?’ bij een opdrachtje of ‘Zin om even samen te zitten?’ bij nabijheid. Bij waardering is deze extra zin niet nodig en staat de actie er niet. Ook een check-in wordt uitsluitend op eigen keuze gekopieerd.</p>
+<p>‘Ander idee’ blijft binnen dezelfde selectie. Wie een andere toon wil, kiest ‘Toon aanpassen’ in de contextweergave. Checkantwoorden worden in versie 1 niet opgeslagen of als profiel van de partner gebruikt.</p>
+<h2 id="section-8">8. Visueel systeem</h2>
+<h3>Voorgestelde tokens</h3>
+<p>De gekozen materiaalwereld staat vast als richting. Exacte waarden hieronder zijn een consistente startset die bij implementatie op leesbaarheid en weergave wordt gecontroleerd.</p>
+<table>
+<thead>
+<tr>
+<th>Token</th>
+<th>Voorstel</th>
+<th>Gebruik</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>background</td>
+<td>#FFF1E8</td>
+<td>Rustige hoofdachtergrond.</td>
+</tr>
+<tr>
+<td>surface</td>
+<td>#FFFAF6</td>
+<td>Ondersteunende panelen en subtiele selectieachtergrond.</td>
+</tr>
+<tr>
+<td>ink</td>
+<td>#44283F</td>
+<td>Primaire tekst, focus en nadruk.</td>
+</tr>
+<tr>
+<td>ink-muted</td>
+<td>#765866</td>
+<td>Uitleg en context; contrast controleren per achtergrond.</td>
+</tr>
+<tr>
+<td>peach</td>
+<td>#F4B7A7</td>
+<td>Mascotte en decoratief materiaal.</td>
+</tr>
+<tr>
+<td>lavender</td>
+<td>#B8A2E8</td>
+<td>Broekje en zacht geselecteerde vlakken met donkere tekst.</td>
+</tr>
+<tr>
+<td>lavender-strong</td>
+<td>#6E4B9D</td>
+<td>Actieve lijnen of accenten waar meer contrast nodig is.</td>
+</tr>
+<tr>
+<td>line</td>
+<td>#D9C9CE</td>
+<td>Rustige scheiding en grens van controles.</td>
+</tr>
+<tr>
+<td>spacing</td>
+<td>4 / 8 / 12 / 16 / 24 / 32 / 48 px</td>
+<td>Één schaal voor gaps en padding.</td>
+</tr>
+<tr>
+<td>radius-control</td>
+<td>16 px</td>
+<td>Gewone controles.</td>
+</tr>
+<tr>
+<td>radius-panel</td>
+<td>24 px</td>
+<td>Ondersteunende weergave.</td>
+</tr>
+<tr>
+<td>radius-pill</td>
+<td>999 px</td>
+<td>Korte selectie en filter.</td>
+</tr>
+<tr>
+<td>target</td>
+<td>minimaal 44×44 px</td>
+<td>Voorgestelde hitbox voor primaire bediening.</td>
+</tr>
+<tr>
+<td>focus</td>
+<td>2 px pruimlijn, 3 px offset</td>
+<td>Toetsenbordfocus; herkenbaar op ieder vlak.</td>
+</tr>
+</tbody></table>
+<h3>Typografie en hiërarchie</h3>
+<p>Kandidaat: Fraunces voor display en inspiratie; Nunito Sans voor bediening. Gebruik lokale bundeling en goede systeemfallbacks wanneer de letters later worden gekozen. Inspiratie is circa 22–30 px, afhankelijk van hoogte/breedte, met circa 1.25–1.35 regelafstand. Body en bediening beginnen rond 16 px. Korte labels mogen 14 px zijn als ze leesbaar blijven. Geen kleine kapitale paragrafen of decoratieve lettervormen voor de te kopiëren tekst.</p>
+<h3>Componentcontracten</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Eigen verantwoordelijkheid</th>
+<th>Vaste regels</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AppShell</td>
+<td>Weergave, terugkeer en veilige randen.</td>
+<td>Bewaart de generator bij ondersteuning; geen eigen selectiealgoritme.</td>
+</tr>
+<tr>
+<td>ContextSummary / ContextPanel</td>
+<td>Situatie en toon zichtbaar maken en aanpassen.</td>
+<td>Een bevestigde verandering geldt voor de volgende trekking.</td>
+</tr>
+<tr>
+<td>IntentSelector</td>
+<td>De categorie kiezen.</td>
+<td>Eén actieve categorie; tekst én vorm tonen selectie; één tik kiest direct, zonder extra bevestiging.</td>
+</tr>
+<tr>
+<td>PlayStage</td>
+<td>Visueel ritueel en één activeringsgebeurtenis.</td>
+<td>Canvas decoratief; echte knop; geeft geen inhoudelijke betekenis aan beweging.</td>
+</tr>
+<tr>
+<td>InspirationResult</td>
+<td>Eén zin, label en oorspronkelijke selectie.</td>
+<td>Selecteerbare tekst; vaste ruimte; één live announcement.</td>
+</tr>
+<tr>
+<td>ResultActions</td>
+<td>Kopiëren en bewaren van het huidige resultaat.</td>
+<td>Onafhankelijk van 3D; iedere actie meldt haar eigen status.</td>
+</tr>
+<tr>
+<td>RoomCheckPanel</td>
+<td>Reflectievragen en eigen vervolgstappen.</td>
+<td>Geen stemmingprofiel, score of automatische toestemming.</td>
+</tr>
+<tr>
+<td>SavedIdeasView</td>
+<td>Bewaarde ideeën bekijken en verwijderen.</td>
+<td>Dezelfde resultaatweergave; duidelijke lege toestand en terugkeer.</td>
+</tr>
+<tr>
+<td>StatusMessage</td>
+<td>Actieresultaat of fout uitleggen.</td>
+<td>Geen verstorende modal voor een kleine fout; tekst naast de relevante actie.</td>
+</tr>
+</tbody></table>
+<p>Een nieuwe component krijgt standaard-, focus-, geselecteerde-, bezig-, lege- en fouttoestanden waar die werkelijk bestaan. Geen losse aangepaste knoppen per module.</p>
+<h2 id="section-9">9. Motioncontract</h2>
+<p>De betekenisvolle zichtbare gebeurtenis is het contactmoment. De generatorcontroller reserveert het resultaat bij activering; de zichtbare onthulling en het optionele geluid verwijzen naar contact. Bij verborgen tab of het openen van ondersteuning publiceert de controller het resultaat eenmaal zonder geluid en beëindigt de decoratieve routine. De totale routine duurt als richtwaarde circa 600 ms.</p>
+<table>
+<thead>
+<tr>
+<th>Tijd</th>
+<th>Gebeurtenis</th>
+<th>Gedrag</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0–60 ms</td>
+<td>Directe reactie</td>
+<td>Idle stopt soepel; klein indrukken van het object.</td>
+</tr>
+<tr>
+<td>40–150 ms</td>
+<td>Hand nadert</td>
+<td>Eén hand beweegt naar de buitenzijde van het broekje.</td>
+</tr>
+<tr>
+<td>150–190 ms</td>
+<td>Contact</td>
+<td>Lokaal of groepsgewijs squashen; klein kantelen; voorbereid idee één keer publiceren.</td>
+</tr>
+<tr>
+<td>190–275 ms</td>
+<td>Terugtrekken</td>
+<td>Hand trekt weg; object begint zachte rebound.</td>
+</tr>
+<tr>
+<td>240–420 ms</td>
+<td>Onthulling</td>
+<td>Tekst verschijnt met beperkte opacity en circa 6 px verplaatsing.</td>
+</tr>
+<tr>
+<td>275–600 ms</td>
+<td>Rust</td>
+<td>Twee afnemende rebounds; knop wordt na herstel opnieuw actief.</td>
+</tr>
+</tbody></table>
+<ul>
+<li>Rustbeweging: ongeveer 6 seconden per kleine wiebel, geen voortdurende aandachtsvraag rond de tekst.</li>
+<li>Beweging kan onafhankelijk van geluid worden uitgezet in instellingen. De systeemvoorkeur voor reduced motion bepaalt de eerste bewegingskeuze; de gebruiker kan beweging altijd pauzeren. Een gepauzeerde mascotte houdt dezelfde knop en geeft direct een resultaat met hooguit een rustige crossfade.</li>
+<li>Geen cameraschudden, full-screen blur of voortdurend confetti.</li>
+<li>Reduced motion: geen idle/travel/rebound; directe trekking met korte crossfade en eventueel statisch contactteken.</li>
+<li>Geluid begint uit; alleen een expliciete keuze zet het aan. Geen autoplay.</li>
+<li>Animatie stopt bij verborgen tab en bij ondersteunende weergaven.</li>
+<li>Audiofouten verhinderen geen trekking en produceren geen foutmodal; geluid blijft een optionele extra. Dezelfde reduced-motionkeuze geldt voor paneelovergangen en eventuele scrollanimatie.</li>
+<li>De belangrijkste eventlogica hangt niet alleen af van een CSS animationend-callback. De trekking is ook bij uitgeschakelde motion deterministisch één actie.</li>
+<li>De 3D-weergave gebruikt een beperkte scene en renderbudget; de exacte techniek wordt pas in het implementatieplan definitief.</li>
+</ul>
+<h2 id="section-10">10. React- en gegevensblueprint</h2>
+<p>De bouw scheidt vier verantwoordelijkheden: inhoud, selectie, weergave en opslag. De animatie kent de teksten niet; de selectie kent geen Three.js-objecten. Een toekomstige puntenmodule leest een expliciet door de gebruiker gekozen erkenning, geen tik-events.</p>
+<p>Eén generatorcontroller bezit de huidige selectie, de lopende trekking, het getoonde resultaat en de gemengde reeksen. De stage ontvangt alleen de animatiestatus en geeft activering door. De controller zorgt met een unieke actie-ID voor één reservering en één publicatie; daarvoor is geen externe state-library nodig. Kleine tijdelijke weergavetoestand blijft lokaal in de betreffende component.</p>
+<div class="architecture" role="img" aria-label="React-samenhang: shell opent generator of ondersteuning. Context en stage gebruiken de selectie-engine. Catalogus levert ideeën. Resultaat wordt gekopieerd of via een adapter bewaard."><div class="arch-top">AppShell · weergave en terugkeer</div><div class="arch-row"><div>Generator<br><small>context · stage · resultaat</small></div><div>Ondersteuning<br><small>momentcheck · favorieten</small></div></div><div class="arch-mid">Selectie-engine <small>↔ ideeëncatalogus</small></div><div class="arch-bottom">Huidig resultaat → kopiëren / bewaren → opslagadapter</div><p>Inhoud, selectie, motion en opslag hebben elk één verantwoordelijkheid.</p></div>
+<h3>Gedeelde begrippen</h3>
+<table>
+<thead>
+<tr>
+<th>Begrip</th>
+<th>Minimum aan betekenis</th>
+<th>Toekomstige compatibiliteit</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Idea</td>
+<td>Stabiele ID, tekst, intentie, geldige situaties, toonlabels, redactiestatus, optionele duur/privacyvoorwaarde.</td>
+<td>Eigen ideeën en vertalingen hoeven de generator niet te wijzigen.</td>
+</tr>
+<tr>
+<td>Selection</td>
+<td>Gekozen situatie, toon en intentie.</td>
+<td>Nieuwe voorkeuren zijn benoemde velden, geen reeks ongecontroleerde flags.</td>
+</tr>
+<tr>
+<td>CurrentDraw</td>
+<td>Idee-ID, actie-ID, tekst- en intentiesnapshot, contextsnapshot en moment van trekken.</td>
+<td>Kopiëren, bewaren en momentcheck blijven dezelfde tekst gebruiken bij cataloguswijziging.</td>
+</tr>
+<tr>
+<td>Favorite</td>
+<td>Idee-ID plus tekstsnapshot, context en opgeslagen moment.</td>
+<td>Wijzigingen in de catalogus herschrijven persoonlijke favorieten niet.</td>
+</tr>
+<tr>
+<td>Preferences</td>
+<td>Eigen toon/contextkeuzes, motion/soundkeuze en expliciete contentvoorkeuren.</td>
+<td>Geen afgeleide profielscore van de partner.</td>
+</tr>
+<tr>
+<td>Recognition, later</td>
+<td>Persoonlijke reden, expliciet gekozen punten indien gebruikt, moment, wijzigbare invoer.</td>
+<td>Afzonderlijk van Idea en CurrentDraw; eigen historie en afspraken.</td>
+</tr>
+<tr>
+<td>Agreement, later</td>
+<td>Gezamenlijke omschrijving, betrokkenen, bevestigde staat en wijzigingsgeschiedenis.</td>
+<td>Een eenzijdige notitie wordt niet automatisch een gezamenlijke afspraak.</td>
+</tr>
+</tbody></table>
+<p>Versie 1 heeft versieerbare lokale opslag met gecontroleerd lezen, een migratiepad en een sessiefallback. Een onbekende of onleesbare opgeslagen versie wordt niet stilzwijgend overschreven; de bruikbare sessie gaat door met een begrijpelijke melding. De adapter kan later synchronisatie ondersteunen; accounts, cloudservices en realtime infrastructuur worden niet alvast gebouwd. Browseropslag wordt niet als versleutelde of voor medegebruikers onzichtbare opslag gepresenteerd.</p>
+<h3>Selectievolgorde</h3>
+<ol>
+<li>Neem alleen vrijgegeven ideeën uit de catalogus.</li>
+<li>Filter op de expliciet gekozen situatie, intentie en toon. Tijd/privacyvoorwaarden zonder eigen filter worden zichtbaar benoemd in de tekst of momentcheck; zij worden niet geacht al vervuld te zijn.</li>
+<li>Gebruik per genormaliseerde selectie en catalogusversie een gemengde reeks van stabiele idee-IDs. Bij cataloguswijziging wordt de beschikbare reeks vernieuwd en bevat zij geen verwijderde of niet-vrijgegeven IDs.</li>
+<li>Reserveer één resultaat per geaccepteerde actie en publiceer dat eenmaal.</li>
+<li>Meng opnieuw wanneer de reeks op is; vermijd het laatst getoonde idee, ook na wisselen van filters, als meerdere ideeën beschikbaar zijn. Als de laatste ID alsnog aan het einde van de reeks staat, start de nieuwe cyclus met een andere ID; variatie gaat hier vóór een starre reeksvolgorde.</li>
+<li>Bij nul resultaten toon een lege toestand; bij één resultaat benoem de beperkte variatie.</li>
+</ol>
+<p>De initiële defaults zijn herkenbaar en aanpasbaar. Na een eigen wijziging bewaart de app die keuze. ‘Samen’ is een filterkeuze van de gebruiker en geen locatie- of nabijheidsmeting.</p>
+<h2 id="section-11">11. Groei zonder aangeplakte functies</h2>
+<table>
+<thead>
+<tr>
+<th>Fase</th>
+<th>Functie</th>
+<th>Integreert met</th>
+<th>Voorwaarde vóór bouwen</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Generator, context, vier intenties, 160 ideeën, kopiëren, favorieten en momentcheck.</td>
+<td>Kerncomponenten en lokale voorkeuren.</td>
+<td>Geschreven ontwerp en implementatieplan beoordeeld.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Eigen ideeën, bewerken, blokkeren van ongewenste inhoud, zoeken in opgeslagen ideeën.</td>
+<td>Idea-model, catalogus en dezelfde resultaatweergave.</td>
+<td>Werkelijke behoefte aan personalisatie; duidelijke verwijdering en herstel.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Inspiratie vanuit de sub en gezamenlijke voorkeuren.</td>
+<td>Bestaande intenties en voorkeuren met expliciete eigenaarschap.</td>
+<td>Zelfstandig ontworpen sub-gebruikssituatie; geen automatisch afgeleid rollenprofiel.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Good Girl Points en coupons.</td>
+<td>Afzonderlijke Recognition- en Reward-begrippen; gedeelde UI-primitieven.</td>
+<td>Samen begrepen regels, correcties en inwisselen; geen automatische koppeling aan verzoekjes.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Afspraken, herinneringen of een lichte planning.</td>
+<td>Agreement-model en eigen overzichtstaak.</td>
+<td>Verschil tussen voorstel, eigen notitie en gezamenlijke afspraak vastgelegd.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Synchronisatie of Telegram-integratie.</td>
+<td>Opslagadapter en expliciete deelactie.</td>
+<td>Accounts, eigenaarschap, toegang, verwijdering en specifieke verzendautorisatie ontworpen.</td>
+</tr>
+</tbody></table>
+<p>De fasen zijn opties, geen toegezegde roadmap. Nieuwe modules krijgen pas een permanente navigatieplek zodra hun eigen taak vaak genoeg voorkomt. Het generator-scherm krijgt geen puntenmeter, afsprakenlijst en beloningswinkel erbij.</p>
+<h2 id="section-12">12. Toetsing en besluitvorming</h2>
+<h3>Acceptatie van de eerste bouw</h3>
+<ul>
+<li>Kernhandeling en laatst getrokken resultaat zijn begrijpelijk zonder uitleg.</li>
+<li>Elke nieuwe trekking past bij de selectie die bij haar activering is vastgelegd; het getoonde resultaat benoemt zijn oorspronkelijke context. Lege en één-itemselecties werken eerlijk.</li>
+<li>Eén geaccepteerde tik produceert één idee, ook met reduced motion en herhaalde input.</li>
+<li>Een lege selectie toont direct een herstelactie, zonder lege trekking, contactgeluid of verbruik van de ideeënreeks. Een categorie verandert in één keuze de volgende trekking; contextwijzigingen hebben afzonderlijk bevestigen/annuleren.</li>
+<li>Normale hoofdweergave past in de doelviewports; zoom en grote tekst houden inhoud bereikbaar.</li>
+<li>De compacte categoriekeuze geeft de mascotte ruimte; wisselen tussen compacte en ruime layout behoudt selectie, resultaat en focus.</li>
+<li>Kopiëren, weigering van clipboard/opslag, terugkeer en verwijderen van favorieten hebben een bruikbaar pad.</li>
+<li>Toetsenbordbediening, focus, tekstcontrast, labels en live announcements werken met dezelfde inhoud.</li>
+<li>Annuleren bewaart bevestigde filters; browser-terug werkt binnen ondersteuning en verlaat de generator normaal wanneer er geen interne terugkeerroute openstaat. Beweging kan worden gepauzeerd.</li>
+<li>De momentcheck kent geen partnerstatus of toestemmingsscore.</li>
+<li>Een favoriet en een gekopieerd bericht worden nergens als uitgevoerd of verzonden weergegeven.</li>
+<li>Mobiel en desktop worden samen visueel beoordeeld, gevolgd door één gebundelde correctieronde indien nodig.</li>
+</ul>
+<p>Deze punten zijn eisen voor de latere bouw. De huidige blueprint is inhoudelijk en structureel beoordeelbaar; geen enkel punt is nu als browsergetest of geïmplementeerd geclaimd.</p>
+<h3>Beslisvolgorde voor volgende werkzaamheden</h3>
+<ol>
+<li>Beoordeel dit ontwerpfundament en pas de regels waar nodig aan.</li>
+<li>Bepaal mockup vóór code of direct vanuit code, plus hosting indien die de bouw stuurt.</li>
+<li>Maak een gefaseerd implementatieplan voor versie 1 met afgesproken componentgrenzen.</li>
+<li>Bouw versie 1 en verifieer de gebruikspaden binnen de afgesproken scope.</li>
+<li>Gebruik feedback om één volgende functie te kiezen; toets die aan dezelfde regels.</li>
+</ol>
+<h3>Zelfreflectie</h3>
+<p>Het eerdere ontwerp legde meer vast over het billenobject dan over het resultaat en de ontvangende partner. Deze blueprint herstelt dat met context, duidelijke intenties, een optionele momentcheck en gescheiden betekenissen van trekken, bewaren, waarderen en afspreken. Het grootste resterende risico is dat veel inhoud alsnog herhalend of onnatuurlijk klinkt. Daarom bepaalt redactionele kwaliteit of een idee in de catalogus komt; 160 is een doel, geen reden om zwakke varianten op te nemen.</p>
+<p>Geschatte betrouwbaarheid: circa 90% voor deze ontwerp- en architectuurbeoordeling, subjectief. Passendheid voor beide partners en de daadwerkelijke viewportpasvorm moeten tijdens beoordeling en gebruik nog worden bevestigd.</p>
+<h2 id="section-13">13. Mini-audit van de afwerking</h2>
+<p>Scope: dit ontwerpdocument en de schematische HTML-blueprint. Er is geen React-app gebouwd; runtimegedrag, 3D, echte tekstzoom en browserpasvorm zijn daarom geen bewezen resultaten. De afwerking gebruikt één bevindingenronde, één gebundelde correctie en een eindcontrole. Nieuwe smaakvarianten worden niet als defect behandeld.</p>
+<table>
+<thead>
+<tr>
+<th>Bevinding</th>
+<th>Gerichte correctie</th>
+<th>Bewijs op ontwerpniveau</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Een stage van 112 px verzwakte het centrale object op lage schermen.</td>
+<td>Lage layouts krijgen één 44 px categorieknop; de stage groeit naar 164 px.</td>
+<td>Het volledige compacte ruimtebudget telt opnieuw op tot 568 px, met dezelfde acties en hitboxes.</td>
+</tr>
+<tr>
+<td>Permanente rustbeweging kon alleen via de systeemvoorkeur worden vermeden.</td>
+<td>Onafhankelijke bewegingskeuze en pauze; hetzelfde resultaatpad zonder travel of rebound.</td>
+<td>Motion- en acceptatiecontract benoemen de pauzestand en reduced-motiongedrag.</td>
+</tr>
+<tr>
+<td>Terugkeer kon focus verliezen wanneer de opener bij een layoutwissel verdween.</td>
+<td>Weergavetitel als focusfallback; geen onderschepping van browser-terug op de generator.</td>
+<td>Het gedeelde paneelcontract specificeert opener, fallback en interne navigatie.</td>
+</tr>
+<tr>
+<td>Voorlopige contextwijzigingen hadden geen expliciete annulering.</td>
+<td>Pas bevestiging wijzigt de generator; annuleren verwerpt tijdelijke keuzes.</td>
+<td>Context- en paneelcontract gebruiken hetzelfde bevestigen/annulerenpatroon.</td>
+</tr>
+<tr>
+<td>Een bewaaractie liet de bestaande favoriet onvoldoende zien.</td>
+<td>‘Bewaard’/‘Bewaard voor deze sessie’, één favoriet per ID, expliciet verwijderen.</td>
+<td>Resultaattoestand en opslagbetekenis zijn consistent beschreven.</td>
+</tr>
+</tbody></table>
+<h3>Behouden om regressie te voorkomen</h3>
+<p>React als framework, geklede 3D-snoepmascotte, peach/lavendel, één geaccepteerde tik per idee, vier intenties, drie tonen, contextgebonden selectie, onafhankelijke momentcheck, handmatig kopiëren en de afzonderlijke toekomstmodules blijven intact. De canonieke hoofdstructuur is niet vervangen.</p>
+<h3>Hercontrole v0.3</h3>
+<table>
+<thead>
+<tr>
+<th>Gevonden spanning</th>
+<th>Correctie</th>
+<th>Eindcontrole</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>De categorieknoppen suggereerden direct kiezen, terwijl de tekst voor alle keuzes extra bevestiging voorschreef.</td>
+<td>Categorieën kiezen met één tik; alleen de contexteditor bewaart voorlopige situatie/toon tot bevestiging.</td>
+<td>Ruime en compacte weergave gebruiken dezelfde directe selectiesemantiek; terug zonder keuze behoudt de categorie.</td>
+</tr>
+<tr>
+<td>‘Elke geaccepteerde tik reserveert één idee’ had geen expliciete route bij nul kandidaten.</td>
+<td>Kandidatencontrole gaat vooraf aan acceptatie; een lege selectie toont direct herstel zonder contactanimatie.</td>
+<td>Geen idee-ID, contactgeluid of reeksverbruik zonder resultaat; het vorige resultaat blijft begrijpelijk.</td>
+</tr>
+<tr>
+<td>Een algemeen verbod op een zichtbaar cijfer kon botsen met de geplande puntenmodule.</td>
+<td>Persoonlijke beoordeling onderscheiden van een samen afgesproken erkenningssaldo.</td>
+<td>De toekomstige puntenmodule behoudt haar plek en blijft los van automatische trekking of uitvoering.</td>
+</tr>
+</tbody></table>
+<p>Deze hercontrole corrigeert alleen interactiecontracten en één te ruime formulering. Kleuren, componentgrenzen, maten, animatietiming en features zijn behouden. Na de gerichte eindcontrole is verdere afwerking van de specificatie niet nodig zonder nieuwe feedback of een concrete implementatiebevinding.</p>
+<h3>Eindcontrole en resterende verificatie</h3>
+<p>Documentstructuur, inhoudsankers, archiefinhoud, tokengebruik in het HTML-document en de benoemde tekstkleurcombinaties zijn lokaal gecontroleerd. De blueprint heeft 13 hoofdsecties met geldige ankers. De compacte ruimteverdeling en de schematische variant tellen beide op tot 568 px. De vijf gecontroleerde tekstkleurcombinaties hebben berekende contrastverhoudingen van 5,66:1 tot 12,50:1; dit is een kleurcontrole en geen certificering van de nog te bouwen interface. De HTML-weergaven zijn schema’s met duidelijke placeholderlabels. Browserrendering is in deze omgeving niet beschikbaar; daadwerkelijke pasvorm en interactieve toegankelijkheid worden tijdens implementatie geverifieerd. De 160 ideeën zijn een redactioneel doel en staan nog niet als volledige catalogus in dit ontwerpdocument. Er is geen ontbrekende implementatie als een geslaagde test gepresenteerd.</p>
+</article></div></main><footer>Ontwerpfundament 0.3 · mini-audit opgenomen · schematische weergaven, geen claim van gebouwde app of geteste browserpasvorm.</footer></body></html>

@@ -1,0 +1,83 @@
+.icon-button { display: inline-flex; justify-content: center; align-items: center; width: 44px; min-height: 44px; padding: 10px; border-radius: 50%; background: transparent; transition: background 160ms var(--ease-out); }
+.icon-button:hover { background: var(--color-lavender-soft); }
+.text-button { display: inline-flex; gap: 8px; align-items: center; justify-content: center; min-height: 44px; padding: 8px 12px; background: transparent; font-weight: 600; text-decoration-thickness: 1px; text-underline-offset: 4px; border-radius: 8px; }
+.text-button:hover { color: var(--color-lavender-strong); }
+.button { min-height: 44px; padding: 11px 22px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; border-radius: 24px; font-size: 13px; line-height: 1.5; font-weight: 700; transition: background 160ms var(--ease-out), transform 160ms var(--ease-out); }
+.button:active { transform: translateY(1px); }
+.button-primary { background: var(--color-ink); color: var(--color-surface); }
+.button-primary:hover { background: #60405b; }
+.button-secondary { background: var(--color-lavender-soft); color: var(--color-ink); }
+.button-secondary:hover { background: #dccbeb; }
+.button .icon { width: 17px; height: 17px; }
+.has-result .result-text { animation: result-reveal 180ms var(--ease-out) 90ms both; }
+@keyframes result-reveal { from { opacity: .65; } to { opacity: 1; } }
+[data-motion='paused'] .result-text { animation: none; }
+.intent-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.intent-button { min-height: 44px; padding: 10px 18px; display: flex; align-items: center; gap: 10px; border: 1px solid var(--color-line); border-radius: 24px; background: transparent; font-size: 13px; line-height: 1.2; font-weight: 600; transition: background 160ms var(--ease-out), border-color 160ms var(--ease-out); }
+.intent-button .icon { width: 18px; height: 18px; }
+.intent-button:hover { background: var(--color-surface); border-color: var(--color-lavender); }
+.intent-button.is-selected { background: var(--color-lavender-soft); border-color: var(--color-lavender); font-weight: 700; }
+.selection-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--color-lavender-strong); margin-left: auto; }
+.compact-intent { width: min(100%, 350px); justify-self: center; align-items: center; gap: 8px; min-height: 44px; padding: 8px 16px; border-radius: 24px; background: var(--color-lavender-soft); font-weight: 700; font-size: 13px; }
+.compact-intent .icon { width: 16px; height: 16px; }
+.compact-change { margin-left: auto; font-size: 11px; font-weight: 600; color: var(--color-muted); }
+.stage-loading { width: 100%; height: 100%; background: transparent; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 16px; font-size: 12px; color: var(--color-muted); }
+.loading-orbit { width: 48px; height: 48px; border: 3px solid var(--color-lavender-soft); border-top-color: var(--color-lavender-strong); border-radius: 50%; }
+.back-button { padding-left: 0; color: var(--color-muted); font-size: 13px; }
+.back-button .icon { width: 17px; height: 17px; }
+.context-form fieldset { border: 0; padding: 0; margin: 0 0 28px; }
+.context-form legend { padding: 0; margin-bottom: 12px; font-size: 14px; font-weight: 700; }
+.choice-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.choice { cursor: pointer; position: relative; display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 48px; padding: 12px 16px; border: 1px solid var(--color-line); border-radius: 12px; font-size: 14px; background: transparent; }
+.choice.is-selected { background: var(--color-lavender-soft); border-color: var(--color-lavender); }
+.choice input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.choice:has(input:focus-visible) { outline: 3px solid var(--color-lavender-strong); outline-offset: 3px; }
+.choice .icon { width: 17px; height: 17px; }
+.tone-choices { display: grid; gap: 8px; }
+.tone-choice { min-height: 70px; }
+.tone-choice strong, .tone-choice small { display: block; }
+.tone-choice small { font-size: 12px; color: var(--color-muted); margin-top: 3px; }
+.panel-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 24px; }
+.panel-links { display: flex; flex-wrap: wrap; margin-top: 12px; gap: 4px; }
+.panel-links .text-button { font-size: 12px; padding-inline: 8px; text-decoration: underline; }
+.support-quote { font: 500 27px/1.25 var(--font-display); letter-spacing: -.02em; margin: 0 0 24px; text-wrap: pretty; }
+.check-caption { font-size: 12px; color: var(--color-muted); margin-bottom: 8px; }
+.reflection-list { list-style: none; padding: 0; margin: 0; }
+.reflection-list li { font-size: 15px; line-height: 1.5; padding: 16px 0; border-bottom: 1px solid var(--color-line); }
+.quiet-note { font-size: 12px; color: var(--color-muted); line-height: 1.6; }
+.room-check > .quiet-note { margin-top: 16px; }
+.check-in { margin-top: 16px; padding: 16px; background: var(--color-lavender-soft); border-radius: 12px; }
+.check-in p { font-size: 16px; user-select: text; }
+.check-in .text-button { padding-left: 0; font-size: 12px; }
+.small-status { font-size: 12px; }
+.saved-list { list-style: none; margin: 16px 0 0; padding: 0; }
+.saved-list li { display: flex; gap: 12px; align-items: center; padding: 18px 0; border-bottom: 1px solid var(--color-line); }
+.saved-list li > div { flex: 1; }
+.saved-context { font-size: 10px; color: var(--color-muted); margin-bottom: 6px; }
+.saved-text { font: 500 21px/1.3 var(--font-display); text-wrap: pretty; }
+.remove-button { color: var(--color-muted); flex: 0 0 44px; }
+.remove-button .icon { width: 17px; height: 17px; }
+.saved-empty { padding: 40px 0; text-align: center; }
+.saved-empty > .icon { width: 40px; height: 40px; color: var(--color-lavender-strong); }
+.saved-empty h2 { font: 500 28px/1.2 var(--font-display); margin: 20px 0 12px; }
+.saved-empty p { font-size: 14px; color: var(--color-muted); margin-bottom: 24px; }
+.undo-notice { background: var(--color-lavender-soft); padding: 12px 16px; border-radius: 12px; margin-top: 16px; font-size: 12px; line-height: 1.5; }
+.undo-notice .text-button { padding: 4px 0; min-height: 36px; display: flex; justify-content: start; text-decoration: underline; }
+.pagination { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 16px; font-size: 12px; }
+.setting-row { position: relative; display: flex; align-items: center; gap: 16px; padding-block: 24px; border-bottom: 1px solid var(--color-line); cursor: pointer; }
+.setting-row > span:first-child { flex: 1; }
+.setting-row strong, .setting-row small { display: block; }
+.setting-row strong { font-size: 15px; }
+.setting-row small { color: var(--color-muted); font-size: 12px; line-height: 1.5; margin-top: 4px; }
+.setting-row input { position: absolute; opacity: 0; right: 0; width: 48px; height: 44px; }
+.switch { flex: 0 0 44px; width: 44px; height: 26px; border-radius: 20px; background: var(--color-line); padding: 3px; transition: background 150ms var(--ease-out); }
+.switch::after { content: ''; display: block; width: 20px; height: 20px; border-radius: 50%; background: var(--color-surface); box-shadow: 0 2px 4px #44283f20; transition: transform 150ms var(--ease-out); }
+.setting-row input:checked + .switch { background: var(--color-lavender-strong); }
+.setting-row input:checked + .switch::after { transform: translateX(18px); }
+.setting-row input:focus-visible + .switch { outline: 3px solid var(--color-lavender-strong); outline-offset: 4px; }
+.settings-content > .support-intro { margin-top: 0; }
+.settings-note { margin-top: 16px; }
+.storage-note { margin-top: 36px; display: flex; align-items: start; gap: 12px; color: var(--color-muted); }
+.storage-note .icon { margin-top: 2px; width: 17px; height: 17px; }
+.storage-note p { font-size: 12px; line-height: 1.6; max-width: 48ch; }
+@media (max-width: 360px) { .intent-button { padding-inline: 12px; gap: 8px; } .button { padding-inline: 18px; } .panel-actions { gap: 8px; } .panel-actions .button { flex: 1 0 auto; } .support-view h1 { font-size: 30px; } }
