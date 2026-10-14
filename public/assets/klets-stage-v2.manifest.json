@@ -1,7 +1,7 @@
 {
   "name": "Klets stage v2",
   "generator": "scripts/stage/build-model.mjs",
-  "generatorVersion": "2.0.3",
+  "generatorVersion": "2.1.0",
   "source": "Original deterministic contour modeling authored for Klets; no downloaded meshes, photos, textures or external assets.",
   "units": "stylized stage units; full body crop approximately 2.96 units high",
   "axes": {
@@ -41,11 +41,11 @@
     "maxPressDepth": 0.064,
     "response": "Localized indentation and shallow inner-palm cloth bend; matching deformed normal deltas on both meshes."
   },
-  "bytes": 1482116,
-  "gzipBytes": 477086,
-  "vertices": 21570,
-  "triangles": 42226,
-  "drawCalls": 4,
+  "bytes": 1504060,
+  "gzipBytes": 482087,
+  "vertices": 22011,
+  "triangles": 42946,
+  "drawCalls": 7,
   "textures": 0,
   "exportPrecision": {
     "positionDecimals": 4,
@@ -116,8 +116,9 @@
     "notes": "Interpolate HandRoot in root-local coordinates. During press move hand by pressFollow * pressWeight to follow local cloth indentation. BodyRoot remains at origin. Palm faces -Z locally; fingers point +Y. Press/rebound must be applied to Skin and Garment at the same weights. Camera framing should include all rest/contact/intermediate hand bounds."
   },
   "materials": [
-    "WarmPeachSkin",
-    "PlumCotton",
-    "IvoryCotton"
+    "WarmSkin",
+    "BlackLeather",
+    "BlackCuff",
+    "BrushedChrome"
   ]
 }

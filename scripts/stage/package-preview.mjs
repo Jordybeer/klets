@@ -8,7 +8,7 @@ const font=(name,relative)=>`@font-face{font-family:${name};font-style:normal;fo
 let html=read('scripts/stage/preview-template.html').toString();
 const values={
   FONT_FACES:[font('KletsDisplay','node_modules/@fontsource/fraunces/files/fraunces-latin-500-normal.woff2'),font('KletsBody','node_modules/@fontsource/nunito-sans/files/nunito-sans-latin-400-normal.woff2')].join('\n'),
-  FALLBACK:'data:image/png;base64,'+read('public/assets/klets-stage-v2.png').toString('base64'),
+  FALLBACK:'data:image/webp;base64,'+read('public/assets/klets-stage-v2.webp').toString('base64'),
   ENGINE:pack('.impeccable/review/stage-v2/bundle/stage-preview.js'),
   MODEL:pack('public/assets/klets-stage-v2.glb'),
   MANIFEST:read('public/assets/klets-stage-v2.manifest.json').toString().trim(),

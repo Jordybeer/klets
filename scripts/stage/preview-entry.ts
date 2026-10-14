@@ -25,11 +25,11 @@ export async function mount(root: HTMLElement, bytes: ArrayBuffer, manifest: Man
   const pmrem=new THREE.PMREMGenerator(renderer);
   const room=new RoomEnvironment();
   const environment=pmrem.fromScene(room,.04);
-  room.dispose(); pmrem.dispose(); scene.environment=environment.texture; scene.environmentIntensity=.60;
-  scene.add(new THREE.AmbientLight('#c7afc6',.18));
-  const key=new THREE.DirectionalLight('#fff1e4',1.5); key.position.set(-3,4,5);scene.add(key);
-  const fill=new THREE.DirectionalLight('#c0a1ce',.55);fill.position.set(3,1,3);scene.add(fill);
-  const rim=new THREE.DirectionalLight('#edb59d',.7);rim.position.set(-2,1,-3);scene.add(rim);
+  room.dispose(); pmrem.dispose(); scene.environment=environment.texture; scene.environmentIntensity=.85;
+  scene.add(new THREE.AmbientLight('#dcc6bf',.10));
+  const key=new THREE.DirectionalLight('#ffe5ce',2.6); key.position.set(-3,4,3);scene.add(key);
+  const fill=new THREE.DirectionalLight('#d1d4df',.40);fill.position.set(3,1,3);scene.add(fill);
+  const rim=new THREE.DirectionalLight('#c54340',2.2);rim.position.set(2,2,-2);scene.add(rim);
   const gltf=await new GLTFLoader().parseAsync(bytes,'');
   const asset=validateStageAsset(gltf.scene);
   scene.add(asset.root);

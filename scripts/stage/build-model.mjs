@@ -3,7 +3,7 @@ import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { gzipSync } from 'node:zlib';
-import { bodyGeometry, addMorphs, handGeometry, cuffGeometry, contactPoint, contactNormal } from './model-shapes.mjs';
+import { bodyGeometry, addMorphs, handGeometry, cuffGeometry, contactPoint, contactNormal, torsoPoint } from './model-shapes.mjs';
 
 // GLTFExporter only needs this authoring-side Blob bridge in Node.
 if (!globalThis.FileReader) {
@@ -15,13 +15,23 @@ if (!globalThis.FileReader) {
 const root = new THREE.Group(); root.name = 'KletsStage';
 const body = new THREE.Group(); body.name = 'BodyRoot'; root.add(body);
 const handRoot = new THREE.Group(); handRoot.name = 'HandRoot'; root.add(handRoot);
-const skinMat = new THREE.MeshStandardMaterial({ color: '#d6926f', roughness: .57, metalness: 0 }); skinMat.name = 'WarmPeachSkin';
-const clothMat = new THREE.MeshStandardMaterial({ color: '#ffffff', vertexColors: true, roughness: .88, metalness: 0 }); clothMat.name = 'PlumCotton';
-const cuffMat = new THREE.MeshStandardMaterial({ color: '#f4e8dc', roughness: .85 }); cuffMat.name = 'IvoryCotton';
+const skinMat = new THREE.MeshStandardMaterial({ color: '#ba866d', roughness: .66, metalness: 0 }); skinMat.name = 'WarmSkin';
+const clothMat = new THREE.MeshPhysicalMaterial({ color: '#ffffff', vertexColors: true, roughness: .52, metalness: 0, clearcoat: .10, clearcoatRoughness: .55 }); clothMat.name = 'BlackLeather';
+const cuffMat = new THREE.MeshStandardMaterial({ color: '#171619', roughness: .39 }); cuffMat.name = 'BlackCuff';
 const skin = new THREE.Mesh(addMorphs(bodyGeometry(true)), skinMat); skin.name = 'Skin'; body.add(skin);
 const garment = new THREE.Mesh(addMorphs(bodyGeometry(false)), clothMat); garment.name = 'Garment'; body.add(garment);
 const hand = new THREE.Mesh(handGeometry(), skinMat); hand.name = 'Hand'; hand.userData.fingerCount = 5; hand.userData.pose = 'prepared relaxed open palm'; handRoot.add(hand);
 const cuff = new THREE.Mesh(cuffGeometry(), cuffMat); cuff.name = 'Cuff'; handRoot.add(cuff);
+// Small garment hardware belongs to the waistband, away from the deforming panel.
+const chrome = new THREE.MeshStandardMaterial({ color: '#b5b4b1', roughness: .24, metalness: .92 }); chrome.name = 'BrushedChrome';
+for (const side of [-1, 1]) {
+  const ring = new THREE.Mesh(new THREE.TorusGeometry(.062, .012, 8, 20), chrome);
+  ring.name = side < 0 ? 'LeftBeltRing' : 'RightBeltRing';
+  ring.position.copy(torsoPoint(side * .65, 1.06)); ring.position.z += .027;
+  ring.rotation.y = side * .33; body.add(ring);
+}
+const stud = new THREE.Mesh(new THREE.SphereGeometry(.029, 8, 6), chrome);
+stud.name = 'CuffStud'; stud.position.set(0, -.535, -.129); stud.scale.z = .35; handRoot.add(stud);
 const target = new THREE.Object3D(); target.name = 'ContactTarget'; target.position.fromArray(contactPoint); body.add(target);
 const palm = new THREE.Object3D(); palm.name = 'PalmAnchor'; palm.position.set(.015, .025, -.143); handRoot.add(palm);
 
@@ -76,12 +86,13 @@ let triangles = 0, vertices = 0, drawCalls = 0;
 root.traverse(o => { if (o.isMesh) { triangles += (o.geometry.index?.count ?? o.geometry.attributes.position.count) / 3; vertices += o.geometry.attributes.position.count; drawCalls++; } });
 const bounds = new THREE.Box3().setFromObject(root);
 const buffer = await new GLTFExporter().parseAsync(root, { binary: true, onlyVisible: true });
-const gzipBytes = gzipSync(Buffer.from(buffer)).byteLength;
-if (triangles > 45_000 || buffer.byteLength > 3_000_000 || gzipBytes > 480_000) throw new Error('Stage export exceeds triangle, GLB or inline-preview budget');
+const gzipBytes = gzipSync(Buffer.from(buffer), { level: 9 }).byteLength;
+// Hardware adds ~5 KB compressed; the complete packaged preview still enforces 1 MB.
+if (triangles > 45_000 || buffer.byteLength > 3_000_000 || gzipBytes > 490_000) throw new Error(`Stage export exceeds budget: ${triangles} triangles, ${buffer.byteLength} raw bytes, ${gzipBytes} gzip bytes`);
 const folder = fileURLToPath(new URL('../../public/assets/', import.meta.url)); await mkdir(folder, { recursive: true });
 await writeFile(`${folder}/klets-stage-v2.glb`, Buffer.from(buffer));
 const manifest = {
-  name: 'Klets stage v2', generator: 'scripts/stage/build-model.mjs', generatorVersion: '2.0.3',
+  name: 'Klets stage v2', generator: 'scripts/stage/build-model.mjs', generatorVersion: '2.1.0',
   source: 'Original deterministic contour modeling authored for Klets; no downloaded meshes, photos, textures or external assets.',
   units: 'stylized stage units; full body crop approximately 2.96 units high', axes: { up: '+Y', rear: '+Z', camera: '+Z with slight +X' },
   nodes: ['KletsStage', 'BodyRoot', 'HandRoot', 'Skin', 'Garment', 'Hand', 'Cuff', 'ContactTarget', 'PalmAnchor'],
@@ -95,7 +106,7 @@ const manifest = {
     pressFollow: [0, 0, -.064],
     notes: 'Interpolate HandRoot in root-local coordinates. During press move hand by pressFollow * pressWeight to follow local cloth indentation. BodyRoot remains at origin. Palm faces -Z locally; fingers point +Y. Press/rebound must be applied to Skin and Garment at the same weights. Camera framing should include all rest/contact/intermediate hand bounds.'
   },
-  materials: ['WarmPeachSkin', 'PlumCotton', 'IvoryCotton'],
+  materials: ['WarmSkin', 'BlackLeather', 'BlackCuff', 'BrushedChrome'],
 };
 await writeFile(`${folder}/klets-stage-v2.manifest.json`, `${JSON.stringify(manifest, null, 2)}\n`);
 console.log(JSON.stringify({ bytes: manifest.bytes, gzipBytes: manifest.gzipBytes, triangles, vertices, bounds: manifest.boundingBox, handMotion: manifest.handMotion }, null, 2));

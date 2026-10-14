@@ -97,30 +97,30 @@ export function bodyGeometry(skin = false) {
     }
   }
   if (!skin) {
-    parts.forEach(g => colored(g, '#62466f'));
+    parts.forEach(g => colored(g, '#202023'));
     // Tailored waist band has real thickness and a narrow top piping.
     const waistband = gridGeometry(8, N, (u, v) => {
       const y = 1.015 + v * .12; const p = torsoPoint(TAU * u, y);
       p.x *= 1.018; p.z *= 1.024; return p;
     });
-    parts.push(colored(reverse(waistband), '#493253'));
+    parts.push(colored(reverse(waistband), '#101013'));
     for (const side of [-1, 1]) {
       const cuff = gridGeometry(8, N, (u, v) => {
         const p = branchPoint(TAU * u, .88 + v * .12, side, false);
         const r = Math.sin(v * Math.PI) * .014 + .009; p.x += side * Math.sin(TAU * u) * r; p.z += Math.cos(TAU * u) * r; return p;
       });
-      parts.push(colored(side < 0 ? reverse(cuff) : cuff, '#82628f'));
+      parts.push(colored(side < 0 ? reverse(cuff) : cuff, '#282326'));
     }
     // Understated sewn center back; seam follows the actual sculpted surface.
     const center = Array.from({ length: 35 }, (_, i) => { const p = torsoPoint(0, lerp(1.01, -.18, i / 34)); p.z += .006; return p; });
-    parts.push(colored(clean(pipe(center, .006)), '#94769d'));
+    parts.push(colored(clean(pipe(center, .006)), '#554344'));
     // Two curved pocket top stitches distinguish ordinary shorts from underwear.
     for (const side of [-1, 1]) {
       const points = Array.from({ length: 25 }, (_, i) => {
         const t = i / 24, x = side * lerp(.24, .78, t), y = .69 - .09 * Math.sin(t * Math.PI);
         const [width] = profile(y); const p = torsoPoint(Math.asin(x / width), y); p.z += .009; return p;
       });
-      parts.push(colored(clean(pipe(points, .005)), '#94769d'));
+      parts.push(colored(clean(pipe(points, .005)), '#554344'));
     }
   }
   let merged = mergeGeometries(parts.map(clean));

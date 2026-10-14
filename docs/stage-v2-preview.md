@@ -15,3 +15,11 @@ node scripts/stage/package-preview.mjs /workspace/klets-stage-v2.html
 De fallback PNG wordt uit de werkelijke rustpose gerenderd. Packaging neemt die PNG, lokale Fraunces/Nunito Sans, de actuele GLB, het manifest en een gebundelde renderer op. Het resultaat bevat geen runtime externe assetrequests. De scène is een native knop; selecteerbare tekst en minder beweging blijven buiten WebGL.
 
 Deze preview stopt beweging in rust; het latere begrensde idle-ritueel hoort bij productie-integratie. Voorkeuren en voorbeeldresultaten blijven lokaal in de geopende preview, zonder koppeling aan productopslag. Device-FPS is niet gemeten. De volledige app wordt pas volgens het v2-plan opgebouwd nadat de modelrichting concreet is beoordeeld.
+
+## Richting na feedback: After dark
+
+De gebruiker verwierp het lieve karakter en keurde een donkere club/editorial-richting goed. Deze preview gebruikt nu zwart leer (roughness .52, metalness 0, clearcoat .10), kleine geborstelde metalen kledingdetails, warm hoofdlicht en een rode randbelichting. De bedekte vorm en bestaande interactiecontracten blijven behouden.
+
+Previewtokens: achtergrond #130c0e, oxblood #45171e/#271116, tekst #f1e7df, ondersteunend #c3aeaa, accent #e0b59f. Fraunces draagt het grote KLETS-woordmerk (96/88/80px), Nunito Sans de bediening; hoofdtekst blijft maximaal 24ch. Hoeken zijn 2–3px. De scène is de enige primaire actie; pauzeren blijft bereikbaar. Dit is de goedgekeurde richting voor deze modelpreview, geen registratie van een reeds omgebouwde productie-app.
+
+De WebP-fallback wordt rechtstreeks uit dezelfde rustpose gerenderd en vervangt de grotere PNG in het inline pakket. Het pakket controleert nog steeds de totale limiet van 1 MB; het GLB-budget is met 10 KB verhoogd voor de metalen details. De nieuwe asset heeft 42.946 driehoeken en zeven meshes. Geen extra runtime requests of dependencies.
