@@ -128,36 +128,6 @@ export function bodyGeometry(skin = false) {
   return merged;
 }
 
-// Continuous opaque skirt: a single tailored envelope with a closed hem lining.
-// The lower panels bridge both legs instead of following the trouser branches.
-export function skirtGeometry() {
-  const top = 1.34, hem = -.70;
-  const sample = (theta, y) => {
-    const p = torsoPoint(theta, y);
-    const blend = smooth(THREE.MathUtils.clamp((.05 - y) / .75, 0, 1));
-    p.x = lerp(p.x, .990 * Math.sin(theta), blend);
-    p.z = lerp(p.z, -.025 + .60 * Math.cos(theta), blend);
-    // Fabric bridges the center valley; no anatomical contour is exposed.
-    if (Math.cos(theta) > 0) p.z += .06 * Math.exp(-p.x * p.x / .14);
-    return p;
-  };
-  const shell = gridGeometry(48, N, (u, v) => sample(u * TAU, lerp(top, hem, v)));
-  const waist = gridGeometry(6, N, (u, v) => {
-    const p = sample(u * TAU, top - v * .10); p.x *= 1.015; p.z *= 1.022; return p;
-  });
-  const lining = gridGeometry(3, N, (u, v) => {
-    const p = sample(u * TAU, hem); p.x *= 1 - .018 * v; p.z *= 1 - .018 * v; p.y += .024 * Math.sin(v * Math.PI); return p;
-  });
-  const hemPoints = Array.from({length: 65}, (_, i) => sample(i / 64 * TAU, hem + .035));
-  const seamPoints = Array.from({length: 33}, (_, i) => {
-    const p = sample(.80, lerp(top - .10, hem + .05, i / 32)); p.z += .004; return p;
-  });
-  const parts = [colored(shell, '#21171a'), colored(reverse(waist), '#151114'), colored(lining, '#322226'),
-    colored(clean(pipe(hemPoints, .005)), '#78564e'), colored(clean(pipe(seamPoints, .004)), '#513a36')];
-  const geometry = mergeVertices(mergeGeometries(parts.map(clean)), .00001);
-  geometry.computeVertexNormals(); return geometry;
-}
-
 const contactX = .78, contactY = .12;
 export const contactPoint = torsoPoint(Math.asin(contactX / profile(contactY)[0]), contactY).toArray();
 export const contactNormal = (() => {
