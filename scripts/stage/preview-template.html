@@ -1,0 +1,48 @@
+<div id="klets-stage-v2">
+<style>
+@FONT_FACES@
+#klets-stage-v2{--ks-bg:#271b25;--ks-ink:#fff1e4;--ks-muted:#c7afc6;--ks-lilac:#c0a1ce;--ks-peach:#edb59d;background:var(--ks-bg);color:var(--ks-ink);border-radius:18px;padding:26px 24px 22px;font-family:KletsBody,sans-serif;box-sizing:border-box;max-width:736px;margin:auto;color-scheme:dark}
+#klets-stage-v2 *{box-sizing:border-box}
+#klets-stage-v2 header{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:44px}
+#klets-stage-v2 .ks-brand{font-family:KletsDisplay,Georgia,serif;font-weight:500;font-size:36px;letter-spacing:-.04em;margin:0;line-height:1}
+#klets-stage-v2 .ks-stage{width:100%;height:370px;padding:0;display:block;position:relative;background:transparent;border:0;border-radius:14px;color:inherit;margin:12px auto 0;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+#klets-stage-v2 canvas,#klets-stage-v2 .ks-fallback{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:contain;pointer-events:none}
+#klets-stage-v2 canvas{opacity:0}
+#klets-stage-v2[data-ready="true"] canvas{opacity:1}
+#klets-stage-v2[data-ready="true"] .ks-fallback{visibility:hidden}
+#klets-stage-v2 .ks-hint{text-align:center;color:var(--ks-muted);font-size:13px;margin:6px 0 0;line-height:1.5}
+#klets-stage-v2 .ks-result{font-family:KletsDisplay,Georgia,serif;font-weight:500;letter-spacing:-.025em;font-size:clamp(25px,4.6vw,32px);line-height:1.2;text-align:center;max-width:25ch;min-height:78px;margin:28px auto 14px;text-wrap:balance}
+#klets-stage-v2 .ks-status{color:var(--ks-muted);font-size:12px;min-height:18px;text-align:center;margin:0}
+#klets-stage-v2 .ks-motion{display:flex;justify-content:center;gap:10px;align-items:center;min-height:44px;font-size:12px;color:var(--ks-muted);width:max-content;max-width:100%;margin:12px auto 0}
+#klets-stage-v2 input{accent-color:var(--ks-lilac);width:18px;height:18px;margin:0}
+#klets-stage-v2 ::selection{background:var(--ks-lilac);color:var(--ks-bg)}
+@media(max-width:400px){#klets-stage-v2{padding:18px 16px 14px}#klets-stage-v2 .ks-brand{font-size:31px}#klets-stage-v2 .ks-stage{height:300px;margin-top:4px}#klets-stage-v2 .ks-result{margin-top:22px}}
+@media(max-width:350px){#klets-stage-v2 .ks-stage{height:255px}#klets-stage-v2 .ks-result{min-height:65px;margin-top:18px}#klets-stage-v2 .ks-motion{margin-top:4px}}
+</style>
+<header><p class="ks-brand">klets.</p></header>
+<button class="ks-stage cursor-interaction" type="button" data-action="tap" aria-label="Geef een tik voor een idee" aria-disabled="false"><img class="ks-fallback" src="@FALLBACK@" alt="" aria-hidden="true"><canvas aria-hidden="true"></canvas></button>
+<p class="ks-hint">Geef een tik.</p>
+<p class="ks-result" data-result aria-live="polite">Jij weet precies wat je doet.</p>
+<p class="ks-status" data-status role="status"></p>
+<label class="ks-motion cursor-interaction"><input type="checkbox" data-motion>Beweging pauzeren</label>
+<script>
+(async()=>{
+const root=document.getElementById('klets-stage-v2');
+const unpack=async(encoded,asText)=>{
+const bytes=Uint8Array.from(atob(encoded),c=>c.charCodeAt(0));
+const stream=new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
+return asText?new Response(stream).text():new Response(stream).arrayBuffer();
+};
+try{
+const engine=await unpack('@ENGINE@',true);
+const script=document.createElement('script');script.textContent=engine;root.append(script);
+const bytes=await unpack('@MODEL@',false);
+await window.KletsStagePreview.mount(root,bytes,@MANIFEST@);
+}catch(error){
+root.dataset.ready='fallback';root.querySelector('[data-status]').textContent='De tik blijft werken met het stille beeld.';
+let i=0;root.querySelector('[data-action="tap"]').addEventListener('click',()=>{root.querySelector('[data-result]').textContent=['Kom hier. Ik wil je aandacht.','Kijk me aan. Wacht op mijn teken.'][i++%2];});
+console.error('Klets stage preview:',error);
+}
+})();
+</script>
+</div>
