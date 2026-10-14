@@ -2,7 +2,7 @@
 
 <!-- impeccable:product-schema 1 -->
 
-Status: versie 1 geïmplementeerd op 13 oktober 2026. Dit document beschrijft het gebouwde product; gebruikersonderzoek en hostingacceptatie zijn niet vastgesteld.
+Status: versie 1 geïmplementeerd op 13 oktober 2026. Dit document beschrijft het gebouwde product; gebruikersonderzoek is niet uitgevoerd. De Vercel-deployment is op 14 oktober 2026 gecontroleerd.
 
 ## Platform
 
@@ -10,7 +10,7 @@ web
 
 ## Stack
 
-React, TypeScript en Vite, met een afzonderlijke Three.js-scène. Direct ontwerpen en bouwen vanuit code is goedgekeurd. Hosting is nog niet gekozen.
+React, TypeScript en Vite, met een afzonderlijke Three.js-scène. Direct ontwerpen en bouwen vanuit code is goedgekeurd. Hosting: Vercel-project `klets`, gekoppeld aan `Jordybeer/klets` met productiebranch `main` en domein `klets.jordy.beer`.
 
 ## Users
 
@@ -47,7 +47,7 @@ Speels en uitgesproken in beweging; helder en persoonlijk in tekst. De geklede b
 
 ## Evidence on Hand
 
-De opdracht, de gekozen visuele richting, de goedgekeurde bouw vanuit code, broncode en lokale verificatie vormen het beschikbare bewijs. Er zijn geautomatiseerde tests voor catalogus, selectie, controller, opslag, navigatie en stage-timing. Resultaten van de bouwchecks staan bij de implementatievoortgang. Er zijn geen gebruikerstests, CI-resultaten of gekozen hosting als acceptatiebewijs opgevoerd.
+De opdracht, de gekozen visuele richting, de goedgekeurde bouw vanuit code, broncode en lokale verificatie vormen het beschikbare bewijs. Er zijn geautomatiseerde tests voor catalogus, selectie, controller, opslag, navigatie en stage-timing. Resultaten van de bouwchecks staan bij de implementatievoortgang. Lokale tests, GitHub CI en de werkende Vercel-deployment zijn gecontroleerd; er zijn geen gebruikerstests uitgevoerd.
 
 ## Product Principles
 

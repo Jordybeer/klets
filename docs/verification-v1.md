@@ -43,3 +43,12 @@ Fraunces en Nunito Sans worden uit de vastgepinde Fontsource-packages gebundeld,
 ## Release
 
 `npm run build` levert statische bestanden in `dist/`. GitHub CI is toegevoegd voor installatie, typecheck, tests en build. De bestaande PR #1 blijft de reviewplek. Er wordt geen merge, gekozen hosting of deployment geclaimd. GitHub Actions-run [38478354325](https://github.com/Jordybeer/klets/actions/runs/38478354325) voor implementatiecommit `7299deb92c705aad63faae830c0b462fb6883fa4` eindigde met `success`; de job `verify` is geslaagd. PR #1 staat klaar voor review.
+
+
+## Hosting — 14 oktober 2026
+
+Op verzoek van de gebruiker is PR #1 gepubliceerd naar `main` en Vercel-project `klets` gekoppeld aan `Jordybeer/klets`. Productiecommit: `ee5ec774c30ad09854ffb5e98122850a4f856cce`, identieke bronboom aan de eerder gecontroleerde PR-versie. Vercel bouwt met Node 24, `npm ci`, `npm run build` en uitvoermap `dist`.
+
+Domein: [klets.jordy.beer](https://klets.jordy.beer). De projecttoewijzing is geverifieerd en de DNS-configuratie heeft `misconfigured:false` en geen conflicten. De bestaande door Vercel beheerde wildcard levert de DNS-route; er zijn geen mail- of andere domeinrecords gewijzigd. Git-deployment `dpl_EaD5tLpQGi8aapLrrWDH2uRm7W8M` is `READY`, target `production`, met het domein als alias.
+
+De publieke HTTPS-URL gaf HTTP 200 met de verwachte app en JavaScript-bundel. Een live Chromium-smokecheck op 390×844 laadde de 3D-stage, trok een passend idee en bewaarde het; geen JavaScript-paginafouten. Deze browserharness accepteerde het interne netwerkproxy-certificaat via een lokale testoptie; zij bewijst geen onafhankelijke publieke certificaatketencontrole. De gewone HTTPS-fetch gebruikte de standaard certificaatcontrole. Er is geen productbeveiligingsinstelling verzwakt.

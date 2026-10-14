@@ -2,6 +2,8 @@
 
 Klets is een React-webapp voor korte, passende inspiratie binnen een vrijwillige volwassen D/s-dynamiek. Een geklede 3D-mascotte geeft één idee per tik; situatie, toon en categorie bepalen de selectie. Versie 1 bevat 160 ideeën, handmatig kopiëren, lokale favorieten en een optionele momentcheck.
 
+Live: [klets.jordy.beer](https://klets.jordy.beer). Vercel bouwt automatisch vanuit `main` van `Jordybeer/klets`.
+
 ## Lokaal draaien
 
 Gebruik Node.js 22.12 of hoger.
@@ -22,7 +24,7 @@ npm run build
 npm run preview
 ```
 
-`build` controleert TypeScript en schrijft de productiebuild naar `dist/`. `preview` toont die build lokaal. Hosting is nog niet gekozen; deze opdrachten publiceren niets.
+`build` controleert TypeScript en schrijft de productiebuild naar `dist/`. `preview` toont die build lokaal. Hosting draait op Vercel; deze lokale opdrachten publiceren niets.
 
 ## Bronstructuur
 
