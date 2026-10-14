@@ -5,7 +5,6 @@ import { validateStageAsset, disposeStageAsset } from '../../src/features/stage/
 
 type Transform = { position: number[]; quaternion: number[] };
 type Manifest = { handMotion: { rest: Transform; contact: Transform; pressFollow: number[] } };
-const smooth = (n: number) => { const t=Math.max(0,Math.min(1,n)); return t*t*(3-2*t); };
 
 export async function mount(root: HTMLElement, bytes: ArrayBuffer, manifest: Manifest) {
   const canvas=root.querySelector<HTMLCanvasElement>('canvas')!;
@@ -33,14 +32,13 @@ export async function mount(root: HTMLElement, bytes: ArrayBuffer, manifest: Man
   const gltf=await new GLTFLoader().parseAsync(bytes,'');
   const asset=validateStageAsset(gltf.scene);
   scene.add(asset.root);
-  const rest=manifest.handMotion.rest,contact=manifest.handMotion.contact;
+  const rest=manifest.handMotion.rest;
   const restPosition=new THREE.Vector3().fromArray(rest.position);
-  const contactPosition=new THREE.Vector3().fromArray(contact.position);
   const restQuaternion=new THREE.Quaternion().fromArray(rest.quaternion);
-  const contactQuaternion=new THREE.Quaternion().fromArray(contact.quaternion);
   asset.handRoot.position.copy(restPosition);asset.handRoot.quaternion.copy(restQuaternion);
+  asset.handRoot.visible=false;
   asset.root.updateMatrixWorld(true);
-  const box=new THREE.Box3().setFromObject(asset.root);
+  const box=new THREE.Box3().setFromObject(asset.bodyRoot);
   const center=box.getCenter(new THREE.Vector3()),size=box.getSize(new THREE.Vector3());
   const bodyBox=new THREE.Box3().setFromObject(asset.bodyRoot);
   const shadowCanvas=document.createElement('canvas');shadowCanvas.width=128;shadowCanvas.height=128;
@@ -57,16 +55,10 @@ export async function mount(root: HTMLElement, bytes: ArrayBuffer, manifest: Man
   const reduced=()=>paused.checked||query.matches;
   function publish(){if(published)return;published=true;text.textContent=messages[resultIndex++%messages.length];}
   function pose(t:number,idle=0){
-    const progress=t<150?smooth((t-40)/110):1-smooth((t-190)/120);
-    asset.handRoot.position.lerpVectors(restPosition,contactPosition,progress);
-    asset.handRoot.position.y+=Math.sin(progress*Math.PI)*.10;
-    asset.handRoot.quaternion.slerpQuaternions(restQuaternion,contactQuaternion,progress);
-    const press=t<190?smooth((t-130)/40):Math.exp(-(t-190)/90)*Math.max(0,Math.cos((t-190)/46));
-    asset.handRoot.position.addScaledVector(new THREE.Vector3().fromArray(manifest.handMotion.pressFollow),t===0||t>=600?0:press);
-    const rebound=t>190?Math.exp(-(t-190)/95)*Math.max(0,-Math.cos((t-190)/46)):0;
-    for(const mesh of [asset.garment,asset.skin]){
-      if(mesh.morphTargetInfluences){mesh.morphTargetInfluences[asset.pressIndex]=t===0||t>=600?0:press;mesh.morphTargetInfluences[asset.reboundIndex]=t>=600?0:rebound;}
-    }
+    // A single bounded lighting cue confirms the draw without physical contact.
+    const cue=t>0&&t<600?Math.sin(t/600*Math.PI):0;
+    key.intensity=2.6+cue*.45;
+    rim.intensity=2.2+cue*.70;
     asset.bodyRoot.rotation.y=idle;
   }
   function render(){renderer.render(scene,camera);}

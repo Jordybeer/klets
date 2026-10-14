@@ -3,7 +3,9 @@ import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { gzipSync } from 'node:zlib';
-import { bodyGeometry, addMorphs, handGeometry, cuffGeometry, contactPoint, contactNormal, torsoPoint } from './model-shapes.mjs';
+import { bodyGeometry, skirtGeometry, addMorphs, handGeometry, cuffGeometry, contactPoint, contactNormal, torsoPoint } from './model-shapes.mjs';
+const fashion = process.argv.includes('--fashion');
+const assetName = fashion ? 'klets-fashion' : 'klets-stage-v2';
 
 // GLTFExporter only needs this authoring-side Blob bridge in Node.
 if (!globalThis.FileReader) {
@@ -19,12 +21,12 @@ const skinMat = new THREE.MeshStandardMaterial({ color: '#ba866d', roughness: .6
 const clothMat = new THREE.MeshPhysicalMaterial({ color: '#ffffff', vertexColors: true, roughness: .52, metalness: 0, clearcoat: .10, clearcoatRoughness: .55 }); clothMat.name = 'BlackLeather';
 const cuffMat = new THREE.MeshStandardMaterial({ color: '#171619', roughness: .39 }); cuffMat.name = 'BlackCuff';
 const skin = new THREE.Mesh(addMorphs(bodyGeometry(true)), skinMat); skin.name = 'Skin'; body.add(skin);
-const garment = new THREE.Mesh(addMorphs(bodyGeometry(false)), clothMat); garment.name = 'Garment'; body.add(garment);
+const garment = new THREE.Mesh(addMorphs(fashion ? skirtGeometry() : bodyGeometry(false)), clothMat); garment.name = 'Garment'; body.add(garment);
 const hand = new THREE.Mesh(handGeometry(), skinMat); hand.name = 'Hand'; hand.userData.fingerCount = 5; hand.userData.pose = 'prepared relaxed open palm'; handRoot.add(hand);
 const cuff = new THREE.Mesh(cuffGeometry(), cuffMat); cuff.name = 'Cuff'; handRoot.add(cuff);
 // Small garment hardware belongs to the waistband, away from the deforming panel.
 const chrome = new THREE.MeshStandardMaterial({ color: '#b5b4b1', roughness: .24, metalness: .92 }); chrome.name = 'BrushedChrome';
-for (const side of [-1, 1]) {
+for (const side of fashion ? [] : [-1, 1]) {
   const ring = new THREE.Mesh(new THREE.TorusGeometry(.062, .012, 8, 20), chrome);
   ring.name = side < 0 ? 'LeftBeltRing' : 'RightBeltRing';
   ring.position.copy(torsoPoint(side * .65, 1.06)); ring.position.z += .027;
@@ -90,9 +92,10 @@ const gzipBytes = gzipSync(Buffer.from(buffer), { level: 9 }).byteLength;
 // Hardware adds ~5 KB compressed; the complete packaged preview still enforces 1 MB.
 if (triangles > 45_000 || buffer.byteLength > 3_000_000 || gzipBytes > 490_000) throw new Error(`Stage export exceeds budget: ${triangles} triangles, ${buffer.byteLength} raw bytes, ${gzipBytes} gzip bytes`);
 const folder = fileURLToPath(new URL('../../public/assets/', import.meta.url)); await mkdir(folder, { recursive: true });
-await writeFile(`${folder}/klets-stage-v2.glb`, Buffer.from(buffer));
+await writeFile(`${folder}/${assetName}.glb`, Buffer.from(buffer));
 const manifest = {
-  name: 'Klets stage v2', generator: 'scripts/stage/build-model.mjs', generatorVersion: '2.1.0',
+  name: fashion ? 'Klets opaque skirt fashion preview' : 'Klets stage v2', generator: 'scripts/stage/build-model.mjs', generatorVersion: '2.2.0',
+  presentation: fashion ? 'Opaque skirt; neutral light cue; no hand contact or deformation in the viewer.' : 'Original stage preview',
   source: 'Original deterministic contour modeling authored for Klets; no downloaded meshes, photos, textures or external assets.',
   units: 'stylized stage units; full body crop approximately 2.96 units high', axes: { up: '+Y', rear: '+Z', camera: '+Z with slight +X' },
   nodes: ['KletsStage', 'BodyRoot', 'HandRoot', 'Skin', 'Garment', 'Hand', 'Cuff', 'ContactTarget', 'PalmAnchor'],
@@ -108,5 +111,5 @@ const manifest = {
   },
   materials: ['WarmSkin', 'BlackLeather', 'BlackCuff', 'BrushedChrome'],
 };
-await writeFile(`${folder}/klets-stage-v2.manifest.json`, `${JSON.stringify(manifest, null, 2)}\n`);
+await writeFile(`${folder}/${assetName}.manifest.json`, `${JSON.stringify(manifest, null, 2)}\n`);
 console.log(JSON.stringify({ bytes: manifest.bytes, gzipBytes: manifest.gzipBytes, triangles, vertices, bounds: manifest.boundingBox, handMotion: manifest.handMotion }, null, 2));

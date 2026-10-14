@@ -1,0 +1,125 @@
+{
+  "name": "Klets opaque skirt fashion preview",
+  "generator": "scripts/stage/build-model.mjs",
+  "generatorVersion": "2.2.0",
+  "presentation": "Opaque skirt; neutral light cue; no hand contact or deformation in the viewer.",
+  "source": "Original deterministic contour modeling authored for Klets; no downloaded meshes, photos, textures or external assets.",
+  "units": "stylized stage units; full body crop approximately 2.96 units high",
+  "axes": {
+    "up": "+Y",
+    "rear": "+Z",
+    "camera": "+Z with slight +X"
+  },
+  "nodes": [
+    "KletsStage",
+    "BodyRoot",
+    "HandRoot",
+    "Skin",
+    "Garment",
+    "Hand",
+    "Cuff",
+    "ContactTarget",
+    "PalmAnchor"
+  ],
+  "morphs": {
+    "Garment": [
+      "press",
+      "rebound"
+    ],
+    "Skin": [
+      "press",
+      "rebound"
+    ],
+    "indices": {
+      "press": 0,
+      "rebound": 1
+    },
+    "attributes": [
+      "POSITION",
+      "NORMAL"
+    ],
+    "relative": true,
+    "maxPressDepth": 0.064,
+    "response": "Localized indentation and shallow inner-palm cloth bend; matching deformed normal deltas on both meshes."
+  },
+  "bytes": 1305420,
+  "gzipBytes": 446396,
+  "vertices": 19740,
+  "triangles": 38722,
+  "drawCalls": 5,
+  "textures": 0,
+  "exportPrecision": {
+    "positionDecimals": 4,
+    "morphPositionDecimals": 4,
+    "normalDecimals": 3,
+    "normalUnitCorrectionDecimals": 4,
+    "morphNormalDecimals": 3
+  },
+  "boundingBox": {
+    "min": [
+      -1.0769000574946404,
+      -1.3319000476039946,
+      -0.6986000043107197
+    ],
+    "max": [
+      2.281310626935348,
+      1.6379999904893339,
+      1.5975337887674597
+    ]
+  },
+  "handMotion": {
+    "rest": {
+      "position": [
+        1.48,
+        -0.19,
+        1.13
+      ],
+      "quaternion": [
+        0.01774421892682069,
+        -0.24166779123779145,
+        -0.2520004312941518,
+        0.9368978620962298
+      ]
+    },
+    "contact": {
+      "position": [
+        0.8474517657755132,
+        0.08505245803897335,
+        0.6213672085456108
+      ],
+      "quaternion": [
+        -0.02293095717335865,
+        0.3400888677504733,
+        -0.2867897976328693,
+        0.8953018179413088
+      ]
+    },
+    "palmAnchor": [
+      0.015,
+      0.025,
+      -0.143
+    ],
+    "contactTarget": [
+      0.78,
+      0.12,
+      0.49675609907038143
+    ],
+    "contactNormal": [
+      0.6221170922517514,
+      -0.15400777982981526,
+      0.7676274664706292
+    ],
+    "pressFollow": [
+      0,
+      0,
+      -0.064
+    ],
+    "notes": "Interpolate HandRoot in root-local coordinates. During press move hand by pressFollow * pressWeight to follow local cloth indentation. BodyRoot remains at origin. Palm faces -Z locally; fingers point +Y. Press/rebound must be applied to Skin and Garment at the same weights. Camera framing should include all rest/contact/intermediate hand bounds."
+  },
+  "materials": [
+    "WarmSkin",
+    "BlackLeather",
+    "BlackCuff",
+    "BrushedChrome"
+  ]
+}
